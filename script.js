@@ -1,5 +1,6 @@
 const PHONE = "50493081535";
-const EMAIL = "Jose.Sagastume@outlook.es";
+const PHONE_ALT = "50497982896";
+const EMAIL = "info@bienesraicessbh.com";
 const BRAND = "Bienes Raíces Santa Bárbara HN";
 const SLOGAN = "Tu patrimonio, en manos seguras.";
 
@@ -55,6 +56,18 @@ const PROPERTIES = [
     banos: 1,
     area: "—",
   },
+  {
+    id: "SBH-004",
+    tipo: "finca",
+    titulo: "Finca Pitontes Bajos – inversión turística (Eco‑Lodge / Hotel de montaña)",
+    ubicacion: "Trinidad, Santa Bárbara",
+    precio: "L. Consultar",
+    habitaciones: null,
+    banos: null,
+    area: "102.21 manzanas",
+    foto: "pitontes-1.jpg",
+    descripcion: "Ideal para proyecto turístico (eco‑lodge, hotel de montaña o glamping) sin descartar uso multipropósito. Cuenta con 4 fuentes de agua, electricidad con transformador propio e infraestructura existente (3 casas y barracón)."
+  },
 ];
 
 function renderProperties(filter = "todas") {
@@ -82,18 +95,24 @@ function renderProperties(filter = "todas") {
     if (p.area && p.area !== "—") meta.push(`<span class="badge">📐 ${p.area}</span>`);
 
     const msg = `Hola, vengo del sitio de ${BRAND}. Me interesa la propiedad ${p.id} (${p.titulo}). Ubicación: ${p.ubicacion}. ¿Está disponible?`;
+    const altMsg = `Hola, vengo del sitio de ${BRAND}. Me interesa la finca ${p.id} (${p.titulo}). Ubicación: ${p.ubicacion}. ¿Me puede apoyar con información?`;
+    const altHref = p.tipo === "finca" ? `https://wa.me/${PHONE_ALT}?text=${encodeURIComponent(altMsg)}` : "";
 
     const card = document.createElement("div");
     card.className = "card prop-card";
     card.innerHTML = `
-      <div class="prop-photo">FOTO</div>
+      ${p.foto ? `<div class="prop-photo"><img src="${p.foto}" alt="${p.titulo}"></div>` : `<div class="prop-photo">FOTO</div>`}
       <div>
         <h3>${p.titulo}</h3>
         <div class="prop-meta">${meta.join("")}</div>
+        ${p.descripcion ? `<p class="prop-desc">${p.descripcion}</p>` : ``}
       </div>
-      <a class="btn btn-whatsapp" href="${waLink(msg)}" target="_blank" rel="noopener">
-        Consultar por WhatsApp
-      </a>
+      <div class="prop-actions">
+        <a class="btn btn-whatsapp" href="${waLink(msg)}" target="_blank" rel="noopener">
+          Consultar por WhatsApp
+        </a>
+        ${altHref ? `<a class="btn btn-ghost" href="${altHref}" target="_blank" rel="noopener">Asesor alterno</a>` : ``}
+      </div>
     `;
     grid.appendChild(card);
   });
