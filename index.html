@@ -1,93 +1,212 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bienes Raíces Santa Bárbara HN</title>
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bienes Raíces Santa Bárbara HN | Tu patrimonio, en manos seguras.</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
 
-<header class="nav">
-    <div class="logo">Bienes Raíces Santa Bárbara HN</div>
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <!-- Logo simple (para no depender de nombres raros de imagen) -->
+        <div class="logo" style="display:grid;place-items:center;font-weight:900;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10);">
+          BR
+        </div>
+        <div>
+          <div class="brand-name">Bienes Raíces Santa Bárbara HN</div>
+          <div class="brand-tagline">Tu patrimonio, en manos seguras.</div>
+        </div>
+      </div>
 
-    <nav>
+      <nav class="nav">
         <a href="#propiedades">Propiedades</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#nosotros">Nosotros</a>
         <a href="#contacto">Contacto</a>
-        <a class="btn-wsp" target="_blank"
-        href="https://wa.me/50493081535?text=Hola,%20quiero%20información%20sobre%20una%20propiedad">
+      </nav>
+
+      <a class="btn btn-whatsapp" target="_blank"
+         href="https://wa.me/50493081535?text=Hola,%20quiero%20información%20sobre%20una%20propiedad">
         WhatsApp
-        </a>
-    </nav>
-</header>
+      </a>
+    </div>
+  </header>
 
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <h1>Compra y venta de propiedades en Santa Bárbara</h1>
+        <p>Te acompañamos con transparencia y respaldo para proteger tu inversión.</p>
 
-<section class="hero">
-    <h1>Compra y venta de propiedades en Santa Bárbara</h1>
-    <p>Tu patrimonio, en manos seguras.</p>
-</section>
-
-
-<section id="propiedades" class="propiedades">
-
-<h2>Propiedad destacada</h2>
-
-<div class="card-propiedad">
-
-    <img src="pitontes-1.png" class="img-principal">
-
-    <div class="contenido">
-
-        <h3>Finca Pitontes Bajos – inversión turística</h3>
-
-        <div class="etiquetas">
-            <span>Finca</span>
-            <span>Trinidad, Santa Bárbara</span>
-            <span>102.21 manzanas</span>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#propiedades">Ver propiedades</a>
+          <a class="btn btn-ghost" target="_blank"
+             href="https://wa.me/50493081535?text=Hola,%20quiero%20información%20sobre%20una%20propiedad">
+            Escribir por WhatsApp
+          </a>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <p>
-        Ideal para eco-lodge, hotel de montaña o proyecto multipropósito.
-        Cuenta con fuentes de agua, electricidad con transformador propio
-        e infraestructura existente.
-        </p>
+  <!-- PROPIEDADES -->
+  <section id="propiedades" class="section">
+    <div class="container">
 
-        <div class="acciones">
+      <div class="section-head">
+        <h2>Propiedades destacadas</h2>
+        <p>Casas, terrenos, fincas y más. Pregunta por disponibilidad.</p>
+      </div>
 
-            <a class="btn-secundario" href="pitontes-bajos.html">
-            Ver detalles
+      <!-- Chips (se quedan, aunque solo haya 1 propiedad) -->
+      <div class="filters">
+        <button class="chip is-active" type="button">Todas</button>
+        <button class="chip" type="button">Casas</button>
+        <button class="chip" type="button">Apartamentos</button>
+        <button class="chip" type="button">Terrenos</button>
+        <button class="chip" type="button">Fincas</button>
+        <button class="chip" type="button">Locales</button>
+      </div>
+
+      <!-- SOLO PROPIEDADES REALES -->
+      <div class="grid">
+
+        <!-- PITONTES BAJOS -->
+        <article class="card prop-card">
+          <div class="prop-photo" aria-label="Foto de la propiedad">
+            <img
+              src="pitontes-1.png"
+              alt="Finca Pitontes Bajos"
+              style="width:100%;height:100%;object-fit:cover;border-radius:14px;"
+            />
+          </div>
+
+          <h3>Finca Pitontes Bajos – inversión turística</h3>
+
+          <div class="prop-meta">
+            <span class="badge">FINCA</span>
+            <span class="badge">Trinidad, Santa Bárbara</span>
+            <span class="badge">102.21 manzanas</span>
+          </div>
+
+          <p>
+            Ideal para proyecto turístico (eco-lodge, hotel de montaña o glamping) sin descartar uso multipropósito.
+            Cuenta con fuentes de agua, electricidad con transformador propio e infraestructura existente.
+          </p>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+            <a class="btn btn-ghost" href="pitontes-bajos.html">Ver detalles</a>
+
+            <a class="btn btn-primary" target="_blank"
+               href="https://wa.me/50493081535?text=Hola,%20me%20interesa%20la%20Finca%20Pitontes%20Bajos">
+              Consultar por WhatsApp
             </a>
+          </div>
+        </article>
 
-            <a class="btn-principal" target="_blank"
-            href="https://wa.me/50493081535?text=Hola,%20me%20interesa%20la%20Finca%20Pitontes%20Bajos">
-            Consultar por WhatsApp
-            </a>
-
-        </div>
+      </div>
 
     </div>
-</div>
+  </section>
 
-</section>
+  <!-- SERVICIOS -->
+  <section id="servicios" class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Servicios</h2>
+        <p>Atención profesional para compra, venta y renta en Santa Bárbara.</p>
+      </div>
 
+      <div class="grid-3">
+        <div class="card">
+          <h3>Venta de propiedades</h3>
+          <p>Publicación, promoción y gestión de interesados hasta el cierre.</p>
+        </div>
+        <div class="card">
+          <h3>Compra e inversión</h3>
+          <p>Te ayudamos a encontrar oportunidades con enfoque en rentabilidad.</p>
+        </div>
+        <div class="card">
+          <h3>Acompañamiento</h3>
+          <p>Procesos claros, ordenados y con comunicación directa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section id="contacto" class="contacto">
-<h2>Contacto</h2>
-<p>Contáctanos para información o agendar visita.</p>
+  <!-- NOSOTROS -->
+  <section id="nosotros" class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Nosotros</h2>
+        <p>Somos Bienes Raíces Santa Bárbara HN. Trabajamos con seriedad y enfoque en resultados.</p>
+      </div>
 
-<a class="btn-principal" target="_blank"
-href="https://wa.me/50493081535?text=Hola,%20quiero%20información%20sobre%20una%20propiedad">
-Escribir por WhatsApp
-</a>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Transparencia</h3>
+          <p>Información clara y atención directa para generar confianza.</p>
+        </div>
+        <div class="card">
+          <h3>Enfoque en el cliente</h3>
+          <p>Te acompañamos desde el primer contacto hasta la negociación.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<p class="correo">info@bienesraicessbh.com</p>
-</section>
+  <!-- CONTACTO -->
+  <section id="contacto" class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Contacto</h2>
+        <p>Escríbenos y te respondemos lo antes posible.</p>
+      </div>
 
+      <div class="contact">
+        <div class="card">
+          <h3>Escribir por WhatsApp</h3>
+          <p>Atendemos consultas y coordinamos visitas.</p>
 
-<footer class="footer">
-Bienes Raíces Santa Bárbara HN © 2026
-</footer>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+            <a class="btn btn-primary" target="_blank"
+               href="https://wa.me/50493081535?text=Hola,%20quiero%20información%20sobre%20una%20propiedad">
+              WhatsApp principal: +504 9308-1535
+            </a>
 
+            <a class="btn btn-ghost" target="_blank"
+               href="https://wa.me/50497982896?text=Hola,%20quiero%20información%20sobre%20una%20propiedad">
+              Asesor alterno: +504 9798-2896
+            </a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Correo</h3>
+          <p>info@bienesraicessbh.com</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© Bienes Raíces Santa Bárbara HN</div>
+      <div style="color: rgba(255,255,255,.65); font-size: 13px;">
+        info@bienesraicessbh.com
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="script.js"></script>
 </body>
 </html>
