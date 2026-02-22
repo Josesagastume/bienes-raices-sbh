@@ -1,181 +1,172 @@
-const PHONE = "50493081535";
-const PHONE_ALT = "50497982896";
-const EMAIL = "info@bienesraicessbh.com";
-const BRAND = "Bienes Raíces Santa Bárbara HN";
-const SLOGAN = "Tu patrimonio, en manos seguras.";
-
-function waLink(message) {
-  const text = encodeURIComponent(message);
-  return `https://wa.me/${PHONE}?text=${text}`;
-}
-
-function setWhatsAppLinks() {
-  const baseMsg = `Hola, vengo del sitio de ${BRAND}. ${SLOGAN}. Quiero información.`;
-
-  const links = [
-    ["waTop", baseMsg],
-    ["waHero", baseMsg],
-    ["waProps", baseMsg],
-    ["waContact", baseMsg],
-  ];
-
-  links.forEach(([id, msg]) => {
-    const el = document.getElementById(id);
-    if (el) el.href = waLink(msg);
-  });
-}
+/* =========================
+   CONFIG (EDITABLE)
+========================= */
+const COMPANY = {
+  name: "Bienes Raíces Santa Bárbara HN",
+  whatsappNumber: "50493081535", // +504 9308-1535
+  locationShort: "Trinidad, Santa Bárbara"
+};
 
 const PROPERTIES = [
   {
-    id: "SBH-001",
-    tipo: "casa",
-    titulo: "Casa en venta (Ejemplo)",
-    ubicacion: "Santa Bárbara, HN",
-    precio: "L. Consultar",
-    habitaciones: 3,
-    banos: 2,
-    area: "—",
+    id: "pitontes-bajos",
+    title: "Finca Pitontes Bajos",
+    type: "FINCA",
+    location: "Trinidad, Santa Bárbara",
+    size: "102.21 manzanas",
+    tags: ["finca", "inversion"],
+    summary:
+      "Ideal para eco-lodge, hotel de montaña o glamping. Fuentes de agua, electricidad con transformador propio e infraestructura existente.",
+    image: "pitontes-1.png", // si la tienes en la raíz del proyecto
+    detailsUrl: "pitontes-bajos.html"
   },
   {
-    id: "SBH-002",
-    tipo: "terreno",
-    titulo: "Terreno ideal para inversión (Ejemplo)",
-    ubicacion: "Zona a definir",
-    precio: "L. Consultar",
-    habitaciones: null,
-    banos: null,
-    area: "—",
-  },
-  {
-    id: "SBH-003",
-    tipo: "apartamento",
-    titulo: "Apartamento en renta (Ejemplo)",
-    ubicacion: "Tegucigalpa / SPS (según disponibilidad)",
-    precio: "L. Consultar",
-    habitaciones: 2,
-    banos: 1,
-    area: "—",
-  },
-  {
-    id: "SBH-004",
-    tipo: "finca",
-    titulo: "Finca Pitontes Bajos – inversión turística (Eco‑Lodge / Hotel de montaña)",
-    ubicacion: "Trinidad, Santa Bárbara",
-    precio: "L. Consultar",
-    habitaciones: null,
-    banos: null,
-    area: "102.21 manzanas",
-    foto: "pitontes-1\.png",
-    detalleUrl: "pitontes-bajos.html",
-    descripcion: "Ideal para proyecto turístico (eco‑lodge, hotel de montaña o glamping) sin descartar uso multipropósito. Cuenta con 4 fuentes de agua, electricidad con transformador propio e infraestructura existente (3 casas y barracón)."
-  },
-
-  {
-    id: "SBH-006",
-    titulo: "Finca Trinidad",
-    tipo: "FINCA",
-    ubicacion: "Trinidad, Santa Bárbara",
-    area: "100 manzanas",
-    precio: "",
-    descripcion:
-      "Finca con amplio potencial productivo y de inversión. Cuenta con cultivos establecidos, topografía con áreas planas y acceso, ideal para proyecto agropecuario, finca de recreo o desarrollo turístico rural. Solicita información y agenda tu visita.",
-    foto: "images/finca-trinidad-01.png",
-    detalleUrl: "finca-trinidad.html",
-  },
-
+    id: "finca-trinidad",
+    title: "Finca Trinidad",
+    type: "FINCA",
+    location: "Trinidad, Santa Bárbara",
+    size: "—",
+    tags: ["finca", "inversion"],
+    summary:
+      "Finca con alto potencial productivo y de inversión. Cuenta con áreas planas, accesos, instalaciones y producción agrícola. Solicita información y agenda tu visita.",
+    image: "img/finca-trinidad/ft-01.png",
+    detailsUrl: "finca-trinidad.html"
+  }
 ];
-function renderProperties(filter = "todas") {
+
+/* =========================
+   HELPERS
+========================= */
+function waLink(text) {
+  const msg = encodeURIComponent(text);
+  return `https://wa.me/${COMPANY.whatsappNumber}?text=${msg}`;
+}
+
+function el(tag, attrs = {}, children = []) {
+  const node = document.createElement(tag);
+  Object.entries(attrs).forEach(([k, v]) => {
+    if (k === "class") node.className = v;
+    else if (k.startsWith("data-")) node.setAttribute(k, v);
+    else node[k] = v;
+  });
+  children.forEach((c) => node.appendChild(typeof c === "string" ? document.createTextNode(c) : c));
+  return node;
+}
+
+function propertyCard(p) {
+  const imgStyle = p.image
+    ? `background-image:url('${p.image}');`
+    : `background-image:linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));`;
+
+  const badge = el("span", { class: "badge" }, [p.type]);
+  const loc = el("span", { class: "pill" }, [p.location]);
+  const size = el("span", { class: "pill" }, [p.size]);
+
+  const title = el("h3", {}, [p.title]);
+  const summary = el("p", { class: "muted" }, [p.summary]);
+
+  const btnDetails = el("a", { class: "btn btn--sm", href: p.detailsUrl }, ["Ver detalles"]);
+  const btnWhats = el(
+    "a",
+    { class: "btn btn--sm btn--ghost", href: waLink(`Hola, me interesa la propiedad: ${p.title}. ¿Me brinda más información?`), target: "_blank", rel: "noopener" },
+    ["Consultar por WhatsApp"]
+  );
+
+  const media = el("div", { class: "property__media", style: imgStyle, role: "img", ariaLabel: p.title }, []);
+  const body = el("div", { class: "property__body" }, [
+    title,
+    el("div", { class: "property__meta" }, [loc, size]),
+    summary,
+    el("div", { class: "property__actions" }, [btnDetails, btnWhats])
+  ]);
+
+  const card = el("article", { class: "property card", "data-tags": p.tags.join(" ") }, [
+    el("div", { class: "property__top" }, [badge]),
+    media,
+    body
+  ]);
+
+  return card;
+}
+
+/* =========================
+   RENDER
+========================= */
+function render(filter = "all") {
   const grid = document.getElementById("propertiesGrid");
   if (!grid) return;
 
   grid.innerHTML = "";
-
-  const items = filter === "todas"
-    ? PROPERTIES
-    : PROPERTIES.filter(p => p.tipo === filter);
-
-  if (items.length === 0) {
-    grid.innerHTML = `<div class="card"><h3>Sin resultados</h3><p>Prueba otra categoría o consulta por WhatsApp.</p></div>`;
-    return;
-  }
-
-  items.forEach(p => {
-    const meta = [];
-    meta.push(`<span class="badge">${p.tipo.toUpperCase()}</span>`);
-    meta.push(`<span class="badge">${p.ubicacion}</span>`);
-    meta.push(`<span class="badge">${p.precio}</span>`);
-    if (p.habitaciones) meta.push(`<span class="badge">🛏️ ${p.habitaciones}</span>`);
-    if (p.banos) meta.push(`<span class="badge">🛁 ${p.banos}</span>`);
-    if (p.area && p.area !== "—") meta.push(`<span class="badge">📐 ${p.area}</span>`);
-
-    const msg = `Hola, vengo del sitio de ${BRAND}. Me interesa la propiedad ${p.id} (${p.titulo}). Ubicación: ${p.ubicacion}. ¿Está disponible?`;
-    const altMsg = `Hola, vengo del sitio de ${BRAND}. Me interesa la finca ${p.id} (${p.titulo}). Ubicación: ${p.ubicacion}. ¿Me puede apoyar con información?`;
-    const altHref = p.tipo === "finca" ? `https://wa.me/${PHONE_ALT}?text=${encodeURIComponent(altMsg)}` : "";
-
-    const card = document.createElement("div");
-    card.className = "card prop-card";
-    card.innerHTML = `
-      ${p.foto ? `<div class="prop-photo"><img src="${p.foto}" alt="${p.titulo}"></div>` : `<div class="prop-photo">FOTO</div>`}
-      <div>
-        <h3>${p.titulo}</h3>
-        <div class="prop-meta">${meta.join("")}</div>
-        ${p.descripcion ? `<p class="prop-desc">${p.descripcion}</p>` : ``}
-      </div>
-      <div class="prop-actions">
-        ${p.detalleUrl ? `<a class="btn btn-ghost" href="${p.detalleUrl}">Ver detalles</a>` : ``}
-        <a class="btn btn-whatsapp" href="${waLink(msg)}" target="_blank" rel="noopener">
-          Consultar por WhatsApp
-        </a>
-        ${altHref ? `<a class="btn btn-ghost" href="${altHref}" target="_blank" rel="noopener">Asesor alterno</a>` : ``}
-      </div>
-    `;
-    grid.appendChild(card);
+  const items = PROPERTIES.filter((p) => {
+    if (filter === "all") return true;
+    return p.tags.includes(filter);
   });
+
+  items.forEach((p) => grid.appendChild(propertyCard(p)));
 }
 
-function setupFilters() {
+/* =========================
+   FILTERS
+========================= */
+function initFilters() {
   const chips = document.querySelectorAll(".chip");
-  chips.forEach(btn => {
+  chips.forEach((btn) => {
     btn.addEventListener("click", () => {
-      chips.forEach(b => b.classList.remove("is-active"));
+      chips.forEach((c) => c.classList.remove("is-active"));
       btn.classList.add("is-active");
-      renderProperties(btn.dataset.filter);
+      render(btn.dataset.filter);
     });
   });
 }
 
-function setupLeadForm() {
+/* =========================
+   CONTACT FORM -> WA
+========================= */
+function initLeadForm() {
   const form = document.getElementById("leadForm");
   if (!form) return;
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-
     const data = new FormData(form);
-    const nombre = (data.get("nombre") || "").toString().trim();
-    const telefono = (data.get("telefono") || "").toString().trim();
-    const interes = (data.get("interes") || "").toString().trim();
-    const zona = (data.get("zona") || "").toString().trim();
-    const mensaje = (data.get("mensaje") || "").toString().trim();
+
+    const name = data.get("name") || "";
+    const phone = data.get("phone") || "";
+    const interest = data.get("interest") || "";
+    const zone = data.get("zone") || "";
+    const msg = data.get("message") || "";
 
     const text =
-`Hola, vengo del sitio de ${BRAND}.
-Nombre: ${nombre}
-Teléfono: ${telefono}
-Interés: ${interes}
-Zona: ${zona || "No indicada"}
-Mensaje: ${mensaje}`;
+      `Hola ${COMPANY.name}. Mi nombre es ${name}.\n` +
+      `Mi WhatsApp/telefono: ${phone}\n` +
+      `Interés: ${interest}\n` +
+      (zone ? `Zona: ${zone}\n` : "") +
+      (msg ? `Mensaje: ${msg}\n` : "") +
+      `\n¿Me pueden ayudar, por favor?`;
 
-    window.open(waLink(text), "_blank", "noopener");
+    window.open(waLink(text), "_blank");
+    form.reset();
   });
 }
 
-function init() {
-  document.getElementById("year").textContent = new Date().getFullYear();
-  setWhatsAppLinks();
-  renderProperties("todas");
-  setupFilters();
-  setupLeadForm();
+/* =========================
+   TOP WA BUTTONS
+========================= */
+function initWhatsappButtons() {
+  const top = document.getElementById("btnWhatsappTop");
+  const hero = document.getElementById("btnWhatsappHero");
+  const link = waLink(`Hola ${COMPANY.name}. Quiero información de propiedades, por favor.`);
+
+  if (top) top.href = link;
+  if (hero) hero.href = link;
 }
 
-document.addEventListener("DOMContentLoaded", init);
+/* =========================
+   INIT
+========================= */
+document.addEventListener("DOMContentLoaded", () => {
+  initWhatsappButtons();
+  initFilters();
+  initLeadForm();
+  render("all");
+});
