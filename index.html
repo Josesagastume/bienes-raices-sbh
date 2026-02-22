@@ -1,71 +1,188 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bienes Raíces Santa Bárbara HN</title>
-<link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bienes Raíces Santa Bárbara HN | Tu patrimonio, en manos seguras.</title>
+  <meta name="description" content="Compra, venta y renta de propiedades en Honduras. Te acompañamos con transparencia y seguridad jurídica." />
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="index.html" aria-label="Inicio">
+        <div class="brand__logo">BR</div>
+        <div class="brand__text">
+          <div class="brand__name">Bienes Raíces</div>
+          <div class="brand__sub">Santa Bárbara HN</div>
+        </div>
+      </a>
 
-<header class="header">
-  <div class="container header-inner">
-    <a href="index.html" class="logo">
-      Bienes Raíces Santa Bárbara HN
-    </a>
-    <a class="btn-whatsapp"
-       href="https://wa.me/50493081535"
-       target="_blank">WhatsApp</a>
-  </div>
-</header>
+      <nav class="nav">
+        <a href="#propiedades">Propiedades</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
 
-<section class="hero">
-  <div class="container">
-    <h1>Compra, venta y renta de propiedades en Honduras</h1>
-    <p>Tu patrimonio, en manos seguras.</p>
-  </div>
-</section>
-
-<section id="propiedades" class="section">
-  <div class="container">
-
-    <div class="section-header">
-      <h2>Propiedades destacadas</h2>
-      <p>Fincas disponibles en Santa Bárbara</p>
+      <a class="btn btn--ghost" id="btnWhatsappTop" target="_blank" rel="noopener">WhatsApp</a>
     </div>
+  </header>
 
-    <div class="cards-grid">
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <h1>Compra, venta y renta de propiedades en Honduras</h1>
+          <p>
+            Operamos desde Santa Bárbara con cobertura nacional.
+            Te acompañamos con seguridad, respaldo y transparencia para proteger tu inversión.
+          </p>
 
-      <!-- PITONTES -->
-      <div class="card">
-        <img src="images/pitontes-1.png" alt="Finca Pitontes Bajos">
-        <div class="card-body">
-          <h3>Finca Pitontes Bajos</h3>
-          <p>Santa Bárbara · Ideal para eco lodge o inversión</p>
-          <a href="pitontes-bajos.html" class="btn">Ver detalles</a>
+          <div class="hero__cta">
+            <a class="btn" id="btnWhatsappHero" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+            <a class="btn btn--ghost" href="#propiedades">Ver propiedades</a>
+            <a class="btn btn--ghost" href="#contacto">Contacto</a>
+          </div>
+
+          <div class="trust">
+            <div class="trust__item">
+              <div class="trust__title">Cobertura nacional</div>
+              <div class="trust__desc">Atendemos en todo Honduras.</div>
+            </div>
+            <div class="trust__item">
+              <div class="trust__title">Transparencia</div>
+              <div class="trust__desc">Información clara desde el primer contacto.</div>
+            </div>
+            <div class="trust__item">
+              <div class="trust__title">Seguridad</div>
+              <div class="trust__desc">Asesoría inmobiliaria profesional.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FORM CONTACTO RAPIDO -->
+        <div class="card card--form" id="contacto">
+          <h2>¿Qué estás buscando?</h2>
+          <p class="muted">Envíanos tu consulta y te respondemos por WhatsApp.</p>
+
+          <form id="leadForm">
+            <label>
+              Nombre
+              <input required type="text" name="name" placeholder="Tu nombre" />
+            </label>
+
+            <label>
+              Teléfono / WhatsApp
+              <input required type="text" name="phone" placeholder="+504 ..." />
+            </label>
+
+            <label>
+              Interés
+              <select name="interest">
+                <option value="Compra">Compra</option>
+                <option value="Venta">Venta</option>
+                <option value="Renta">Renta</option>
+                <option value="Inversión">Inversión</option>
+              </select>
+            </label>
+
+            <label>
+              Zona (opcional)
+              <input type="text" name="zone" placeholder="Ej. Santa Bárbara, SPS, Tegucigalpa..." />
+            </label>
+
+            <label>
+              Mensaje
+              <textarea name="message" rows="4" placeholder="Cuéntanos qué buscas..."></textarea>
+            </label>
+
+            <button class="btn btn--full" type="submit">Enviar por WhatsApp</button>
+            <small class="muted">Al enviar, se abrirá WhatsApp con el mensaje listo.</small>
+          </form>
         </div>
       </div>
+    </section>
 
-      <!-- TRINIDAD -->
-      <div class="card">
-        <img src="images/finca-trinidad-01.png" alt="Finca Trinidad">
-        <div class="card-body">
-          <h3>Finca Trinidad</h3>
-          <p>Trinidad · 100 manzanas productivas</p>
-          <a href="finca-trinidad.html" class="btn">Ver detalles</a>
+    <!-- PROPIEDADES -->
+    <section class="section" id="propiedades">
+      <div class="container">
+        <div class="section__head">
+          <h2>Propiedades destacadas</h2>
+          <p class="muted">Opciones seleccionadas. Pregunta por disponibilidad.</p>
+        </div>
+
+        <div class="filters">
+          <button class="chip is-active" data-filter="all">Todas</button>
+          <button class="chip" data-filter="finca">Fincas</button>
+        </div>
+
+        <div class="grid" id="propertiesGrid"></div>
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section class="section" id="servicios">
+      <div class="container">
+        <div class="section__head">
+          <h2>Servicios</h2>
+          <p class="muted">Atención profesional para compra, venta y renta en todo Honduras.</p>
+        </div>
+
+        <div class="grid grid--3">
+          <div class="card">
+            <h3>Compra de propiedades</h3>
+            <p class="muted">Te guiamos para invertir con claridad y confianza desde el primer contacto hasta el cierre.</p>
+          </div>
+          <div class="card">
+            <h3>Venta de propiedades</h3>
+            <p class="muted">Promocionamos tu inmueble y filtramos compradores para lograr la mejor negociación posible.</p>
+          </div>
+          <div class="card">
+            <h3>Renta de propiedades</h3>
+            <p class="muted">Conectamos propietarios e interesados con un proceso ordenado, transparente y seguro.</p>
+          </div>
         </div>
       </div>
+    </section>
 
-    </div>
+    <!-- NOSOTROS -->
+    <section class="section" id="nosotros">
+      <div class="container">
+        <div class="section__head">
+          <h2>Nosotros</h2>
+          <p class="muted">
+            Bienes Raíces Santa Bárbara HN: tu patrimonio, en manos seguras.
+          </p>
+        </div>
 
-  </div>
-</section>
+        <div class="card">
+          <p>
+            Nos especializamos en conectar oportunidades con compradores reales.
+            Nuestro enfoque es profesional: información clara, seguimiento rápido y acompañamiento en cada paso.
+          </p>
+        </div>
+      </div>
+    </section>
 
-<footer>
-  <div class="container">
-    © Bienes Raíces Santa Bárbara HN
-  </div>
-</footer>
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div>
+          <strong>Bienes Raíces Santa Bárbara HN</strong><br />
+          <span class="muted">Trinidad, Santa Bárbara</span>
+        </div>
+        <div class="footer__links">
+          <a href="#propiedades">Propiedades</a>
+          <a href="#servicios">Servicios</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+      </div>
+    </footer>
+  </main>
 
+  <script src="script.js"></script>
 </body>
 </html>
