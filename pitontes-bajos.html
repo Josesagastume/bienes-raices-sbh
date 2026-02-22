@@ -1,645 +1,163 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Finca Pitontes Bajos | Bienes Raíces Santa Bárbara HN</title>
-
-  <style>
-    :root{
-      --bg:#071326;
-      --card:#0d1f3d;
-      --muted:rgba(255,255,255,.75);
-      --line:rgba(255,255,255,.12);
-      --green:#1fae63;
-      --chip:rgba(255,255,255,.06);
-      --shadow: 0 20px 60px rgba(0,0,0,.35);
-    }
-
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: Arial, Helvetica, sans-serif;
-      background:var(--bg);
-      color:#fff;
-    }
-
-    header{
-      position:sticky;
-      top:0;
-      z-index:50;
-      background:rgba(8,26,51,.92);
-      backdrop-filter: blur(8px);
-      border-bottom:1px solid var(--line);
-      padding:14px 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-    }
-
-    header .brand{
-      font-weight:900;
-      letter-spacing:.3px;
-      display:flex;
-      align-items:center;
-      gap:10px;
-      white-space:nowrap;
-    }
-
-    .brand-badge{
-      width:34px;height:34px;border-radius:10px;
-      display:grid;place-items:center;
-      background:rgba(255,255,255,.06);
-      border:1px solid var(--line);
-      font-weight:900;
-    }
-
-    header .actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-      align-items:center;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      padding:10px 12px;
-      border-radius:10px;
-      border:1px solid var(--line);
-      text-decoration:none;
-      color:#fff;
-      font-weight:800;
-      background:rgba(255,255,255,.06);
-      cursor:pointer;
-      user-select:none;
-    }
-    .btn.primary{
-      background:rgba(31,174,99,.95);
-      border-color:rgba(31,174,99,.95);
-      color:#fff;
-    }
-    .btn:hover{ filter:brightness(1.05); }
-
-    .container{
-      max-width:1100px;
-      margin:0 auto;
-      padding:22px 18px 90px; /* deja espacio para el botón fijo móvil */
-    }
-
-    .title{
-      margin:10px 0 6px;
-      font-size:28px;
-      font-weight:900;
-      line-height:1.15;
-    }
-    .subtitle{
-      margin:0 0 16px;
-      color:var(--muted);
-      line-height:1.55;
-      font-size:15px;
-    }
-
-    .badges{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      margin-bottom:14px;
-    }
-    .badge{
-      font-size:12px;
-      font-weight:800;
-      padding:6px 10px;
-      border-radius:999px;
-      background:var(--chip);
-      border:1px solid var(--line);
-    }
-    .badge.ok{
-      background:rgba(31,174,99,.18);
-      border-color:rgba(31,174,99,.35);
-    }
-
-    /* ===== GALERÍA (estilo Airbnb) ===== */
-    .gallery-card{
-      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:14px;
-      box-shadow: var(--shadow);
-    }
-
-    .slider{
-      position:relative;
-      border-radius:14px;
-      overflow:hidden;
-      aspect-ratio: 16 / 9;
-      background:#0a162e;
-    }
-    .slider img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-      cursor:zoom-in;
-    }
-
-    .navbtn{
-      position:absolute;
-      top:50%;
-      transform:translateY(-50%);
-      width:42px;
-      height:42px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(0,0,0,.35);
-      color:#fff;
-      font-weight:900;
-      display:grid;
-      place-items:center;
-      cursor:pointer;
-      user-select:none;
-    }
-    .navbtn:hover{ background:rgba(0,0,0,.5); }
-    .navbtn.prev{ left:12px; }
-    .navbtn.next{ right:12px; }
-
-    .counter{
-      position:absolute;
-      bottom:12px;
-      right:12px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(0,0,0,.35);
-      font-weight:800;
-      font-size:12px;
-    }
-
-    .caption{
-      margin-top:10px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
-      color:rgba(255,255,255,.85);
-      font-weight:800;
-      font-size:13px;
-      padding:10px 12px;
-      border-radius:14px;
-      background:rgba(255,255,255,.04);
-      border:1px solid var(--line);
-    }
-    .caption small{
-      color:rgba(255,255,255,.70);
-      font-weight:700;
-    }
-
-    .thumbs{
-      margin-top:12px;
-      display:grid;
-      grid-template-columns: repeat(9, 1fr);
-      gap:8px;
-    }
-    @media (max-width: 900px){
-      .thumbs{ grid-template-columns: repeat(5, 1fr); }
-    }
-    @media (max-width: 520px){
-      .thumbs{ grid-template-columns: repeat(4, 1fr); }
-    }
-
-    .thumb{
-      border-radius:12px;
-      overflow:hidden;
-      border:1px solid var(--line);
-      aspect-ratio: 1 / 1;
-      cursor:pointer;
-      opacity:.85;
-      background:#0a162e;
-      transition:transform .1s ease, opacity .1s ease;
-    }
-    .thumb:hover{ transform:translateY(-1px); opacity:1; }
-    .thumb img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-    .thumb.active{
-      outline:2px solid rgba(31,174,99,.95);
-      opacity:1;
-    }
-
-    /* ===== INFO ===== */
-    .grid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:16px;
-      margin-top:16px;
-    }
-    @media (max-width: 900px){
-      .grid{ grid-template-columns: 1fr; }
-    }
-
-    .card{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:16px;
-      box-shadow: 0 14px 40px rgba(0,0,0,.25);
-    }
-    .card h3{
-      margin:0 0 10px;
-      font-size:18px;
-      font-weight:900;
-    }
-
-    .list{
-      margin:0;
-      padding-left:18px;
-      color:var(--muted);
-      line-height:1.6;
-    }
-
-    .kv{
-      display:grid;
-      grid-template-columns: 150px 1fr;
-      gap:10px;
-      color:var(--muted);
-      margin:8px 0;
-    }
-    .kv b{ color:#fff; }
-
-    .table{
-      width:100%;
-      border-collapse:separate;
-      border-spacing:0;
-      overflow:hidden;
-      border-radius:14px;
-      border:1px solid var(--line);
-      margin-top:10px;
-    }
-    .table td{
-      padding:10px 12px;
-      border-bottom:1px solid var(--line);
-      color:rgba(255,255,255,.82);
-      font-weight:700;
-    }
-    .table tr:last-child td{ border-bottom:none; }
-    .table td:first-child{
-      width:42%;
-      color:#fff;
-      font-weight:900;
-      background:rgba(255,255,255,.04);
-    }
-
-    .cta-row{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:12px;
-    }
-    .cta-row .btn{ flex:1 1 180px; }
-
-    /* ===== MODAL FULLSCREEN ===== */
-    .modal{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.82);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      z-index:999;
-      padding:18px;
-    }
-    .modal.open{ display:flex; }
-    .modal-inner{ width:min(1100px, 100%); }
-    .modal-top{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      margin-bottom:10px;
-    }
-    .modal-top .title2{
-      font-weight:900;
-      font-size:14px;
-      color:rgba(255,255,255,.85);
-    }
-    .close{
-      width:42px;height:42px;border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.06);
-      color:#fff;
-      font-weight:900;
-      cursor:pointer;
-    }
-
-    /* ===== BOTÓN FIJO MÓVIL ===== */
-    .sticky-cta{
-      position:fixed;
-      left:0;
-      right:0;
-      bottom:0;
-      z-index:1000;
-      padding:10px 12px;
-      background:rgba(7,19,38,.86);
-      border-top:1px solid var(--line);
-      backdrop-filter: blur(8px);
-      display:none;
-    }
-    .sticky-cta .inner{
-      max-width:1100px;
-      margin:0 auto;
-      display:flex;
-      gap:10px;
-      align-items:center;
-      justify-content:space-between;
-    }
-    .sticky-cta .label{
-      display:flex;
-      flex-direction:column;
-      gap:2px;
-      min-width:0;
-    }
-    .sticky-cta .label b{
-      font-size:13px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-    .sticky-cta .label span{
-      font-size:12px;
-      color:rgba(255,255,255,.70);
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-    .sticky-cta .btn{ white-space:nowrap; }
-
-    @media (max-width: 820px){
-      .sticky-cta{ display:block; }
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Finca Productiva (Café y Cardamomo) | Trinidad, Santa Bárbara</title>
+  <meta name="description" content="Finca productiva en Trinidad, Santa Bárbara. Café y cardamomo, sistema de riego, fuentes de agua, energía eléctrica y mejoras." />
+  <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
-
-<header>
-  <div class="brand">
-    <div class="brand-badge">BR</div>
-    <div>Bienes Raíces Santa Bárbara HN</div>
-  </div>
-
-  <div class="actions">
-    <a class="btn" href="index.html#propiedades">← Volver</a>
-
-    <a class="btn primary" target="_blank"
-       href="https://wa.me/50493081535?text=Hola,%20me%20interesa%20la%20Finca%20Pitontes%20Bajos%20y%20quisiera%20más%20información.">
-      Consultar por WhatsApp
-    </a>
-
-    <a class="btn" target="_blank"
-       href="https://wa.me/50497982896?text=Hola,%20me%20interesa%20la%20Finca%20Pitontes%20Bajos%20y%20quisiera%20más%20información.">
-      Asesor alterno
-    </a>
-  </div>
-</header>
-
-<div class="container">
-  <h1 class="title">Finca Pitontes Bajos – inversión turística</h1>
-  <p class="subtitle">
-    Ideal para eco-lodge, hotel de montaña o glamping, sin descartar uso multipropósito.
-    Entorno natural con vistas y potencial para turismo de montaña y proyectos sostenibles.
-  </p>
-
-  <div class="badges">
-    <span class="badge">FINCA</span>
-    <span class="badge">102.21 manzanas</span>
-    <span class="badge">Dirección: Trinidad, Santa Bárbara</span>
-    <span class="badge ok">DISPONIBLE</span>
-  </div>
-
-  <!-- GALERÍA -->
-  <div class="gallery-card">
-    <div class="slider">
-      <button class="navbtn prev" id="prevBtn" aria-label="Anterior">‹</button>
-      <img id="mainImage" src="pitontes-1.png" alt="Foto de Finca Pitontes Bajos" />
-      <button class="navbtn next" id="nextBtn" aria-label="Siguiente">›</button>
-      <div class="counter" id="counter">1 / 9</div>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html#propiedades">
+        <img class="logo" src="logo.png" alt="Bienes Raíces Santa Bárbara HN" />
+        <div>
+          <div class="brand-name">Bienes Raíces Santa Bárbara HN</div>
+          <div class="brand-tagline">Tu patrimonio, en manos seguras.</div>
+        </div>
+      </a>
+      <nav class="nav">
+        <a href="index.html#propiedades">Propiedades</a>
+        <a class="btn btn-whatsapp" href="https://wa.me/50493081535" target="_blank" rel="noopener">WhatsApp</a>
+      </nav>
     </div>
+  </header>
 
-    <div class="caption">
-      <div id="captionText">Vista panorámica / entorno natural</div>
-      <small id="captionHint">Tip: toca la foto para verla en pantalla completa</small>
-    </div>
+  <main class="section">
+    <div class="container">
+      <a class="backlink" href="index.html#propiedades">← Volver</a>
 
-    <div class="thumbs" id="thumbs"></div>
-  </div>
+      <div class="detail-head">
+        <div>
+          <h1>Finca Productiva (Café y Cardamomo)</h1>
+          <div class="detail-meta">
+            <span class="pill">Finca</span>
+            <span class="pill">Trinidad, Santa Bárbara</span>
+            <span class="pill">100 manzanas (aprox.)</span>
+            <span class="pill pill-green">Disponible</span>
+          </div>
+          <p class="lead" style="margin-top:12px;">
+            Propiedad con vocación agrícola y potencial para proyecto ecoturístico. Cuenta con agua, riego e infraestructura instalada.
+          </p>
+        </div>
 
-  <!-- INFO -->
-  <div class="grid">
-    <div class="card">
-      <h3>Descripción</h3>
-      <p class="subtitle" style="margin:0;">
-        Propiedad ideal para inversión turística (eco-lodge, hotel de montaña o glamping) y también para uso
-        agroforestal o proyecto multipropósito. Excelente para desarrollar cabañas, miradores, senderos,
-        actividades de naturaleza y experiencias de montaña.
-      </p>
+        <div class="detail-cta">
+          <div class="detail-cta-inner">
+            <div class="detail-price">Precio: <strong>solo por privado</strong></div>
+            <a class="btn btn-primary" href="https://wa.me/50493081535?text=Hola,%20me%20interesa%20la%20finca%20en%20Trinidad%20(SBH-004).%20%C2%BFMe%20comparte%20informaci%C3%B3n%20y%20coordinamos%20visita%3F" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+            <a class="btn btn-ghost" href="mailto:info@bienesraicessbh.com?subject=Consulta%20finca%20Trinidad%20(SBH-004)">Escribir por correo</a>
+          </div>
+        </div>
+      </div>
 
-      <div style="height:14px"></div>
+      <section class="gallery">
+        <div class="gallery-main">
+          <img id="mainImage" src="pitontes-1.png" alt="Finca en Trinidad, Santa Bárbara">
+        </div>
+        <div class="gallery-thumbs" id="thumbs">
+          <button class="thumb is-active" data-src="pitontes-1.png"><img src="pitontes-1.png" alt="Foto 1"></button>
+          <button class="thumb" data-src="pitontes-2.png"><img src="pitontes-2.png" alt="Foto 2"></button>
+          <button class="thumb" data-src="pitontes-3.png"><img src="pitontes-3.png" alt="Foto 3"></button>
+          <button class="thumb" data-src="pitontes-4.png"><img src="pitontes-4.png" alt="Foto 4"></button>
+          <button class="thumb" data-src="pitontes-5.png"><img src="pitontes-5.png" alt="Foto 5"></button>
+          <button class="thumb" data-src="pitontes-6.png"><img src="pitontes-6.png" alt="Foto 6"></button>
+        </div>
+        <div class="small-note">Tip: si quieres subir más fotos, duplica una miniatura y cambia el nombre del archivo.</div>
+      </section>
 
-      <h3>Potencial turístico</h3>
-      <ul class="list">
-        <li>Eco-lodge / cabañas de montaña (vista y privacidad)</li>
-        <li>Glamping (domos o tiendas premium)</li>
-        <li>Miradores, senderos y experiencias de naturaleza</li>
-        <li>Zona ideal para retiros, eventos y turismo de bienestar</li>
-        <li>Agroturismo: recorridos y experiencias de finca</li>
-        <li>Restaurante mirador / café de montaña (proyecto)</li>
-      </ul>
+      <div class="detail-grid">
+        <section class="panel">
+          <h2>Características principales</h2>
+          <ul class="checklist">
+            <li>Extensión: <strong>100 manzanas (aprox.)</strong></li>
+            <li>Altitud aproximada: <strong>950–1,100 msnm</strong></li>
+            <li>Cultivo principal: <strong>café</strong></li>
+            <li>Cultivo alternativo: <strong>cardamomo</strong></li>
+            <li>Infraestructura para manejo y logística en finca</li>
+          </ul>
 
-      <div style="height:14px"></div>
+          <h3 style="margin-top:18px;">Mejoras e instalaciones</h3>
+          <ul class="checklist">
+            <li>Sistema de riego instalado</li>
+            <li>4 fuentes de agua dentro/colindantes de la propiedad</li>
+            <li>Energía eléctrica con transformador propio</li>
+            <li>Casa para empleados</li>
+            <li>Bodega para insumos y herramientas</li>
+            <li>Secadora para cardamomo</li>
+          </ul>
+        </section>
 
-      <h3>Ficha rápida</h3>
-      <table class="table" role="table" aria-label="Ficha rápida">
-        <tr><td>Extensión</td><td>102.21 manzanas</td></tr>
-        <tr><td>Agua</td><td>4 fuentes</td></tr>
-        <tr><td>Energía</td><td>Transformador propio</td></tr>
-        <tr><td>Infraestructura</td><td>3 casas + barracón</td></tr>
-        <tr><td>Estado</td><td>Disponible</td></tr>
-        <tr><td>Dirección</td><td>Trinidad, Santa Bárbara</td></tr>
-      </table>
+        <aside class="panel panel-soft">
+          <h2>¿Para quién es ideal?</h2>
+          <ul class="bullets">
+            <li>Inversionistas que buscan una finca productiva con agua y mejoras.</li>
+            <li>Productores de café y cardamomo que quieran escalar operación.</li>
+            <li>Proyecto de eco-lodge, hotel de montaña o glamping (sin descartar uso multipropósito).</li>
+          </ul>
 
-      <div style="height:14px"></div>
+          <div class="divider"></div>
 
-      <div class="cta-row">
-        <a class="btn primary" target="_blank"
-           href="https://wa.me/50493081535?text=Hola,%20quiero%20agendar%20una%20visita%20para%20la%20Finca%20Pitontes%20Bajos.">
-          Agendar visita
-        </a>
-        <a class="btn" target="_blank"
-           href="mailto:info@bienesraicessbh.com?subject=Consulta%20-%20Finca%20Pitontes%20Bajos&body=Hola,%20me%20interesa%20la%20Finca%20Pitontes%20Bajos.%20Quisiera%20más%20información.">
-          Escribir por correo
-        </a>
+          <h2>Qué incluye la gestión</h2>
+          <ul class="bullets">
+            <li>Coordinación de visita (previa cita).</li>
+            <li>Acompañamiento en negociación.</li>
+            <li>Revisión de documentos y guía de proceso (acompañamiento legal).</li>
+          </ul>
+
+          <div class="divider"></div>
+
+          <a class="btn btn-primary w-full" href="https://wa.me/50493081535?text=Hola,%20quiero%20agendar%20una%20visita%20para%20la%20finca%20en%20Trinidad%20(SBH-004).%20%C2%BFQu%C3%A9%20d%C3%ADas%20tienen%20disponibles%3F" target="_blank" rel="noopener">Agendar visita</a>
+          <a class="btn btn-whatsapp w-full" style="margin-top:10px" href="https://wa.me/50493081535" target="_blank" rel="noopener">Abrir WhatsApp</a>
+
+          <div class="muted" style="margin-top:12px; font-size:13px;">
+            Nota: Por seguridad, la ubicación exacta se comparte únicamente con interesados verificados.
+          </div>
+        </aside>
+      </div>
+
+      <section class="panel" style="margin-top:18px;">
+        <h2>Preguntas frecuentes</h2>
+        <details class="faq" open>
+          <summary>¿Se puede negociar?</summary>
+          <p class="muted">Sí. La negociación se maneja de forma privada. Escríbenos y te compartimos condiciones y pasos para avanzar.</p>
+        </details>
+        <details class="faq">
+          <summary>¿Puedo solicitar visita?</summary>
+          <p class="muted">Claro. Coordinamos visita con previa cita y confirmación. Contáctanos por WhatsApp para agendar.</p>
+        </details>
+        <details class="faq">
+          <summary>¿Qué documentos se revisan?</summary>
+          <p class="muted">Te orientamos en la revisión documental y el proceso de compraventa. El detalle se confirma según el caso.</p>
+        </details>
+      </section>
+
+      <div class="disclaimer">
+        *La información publicada es referencial. Medidas, inventario y detalles se confirman en visita y con documentación.
       </div>
     </div>
+  </main>
 
-    <div class="card">
-      <h3>Contacto</h3>
-
-      <div class="kv"><b>WhatsApp principal</b><span>+504 9308-1535</span></div>
-      <div class="kv"><b>Asesor alterno</b><span>+504 9798-2896</span></div>
-      <div class="kv"><b>Correo</b><span>info@bienesraicessbh.com</span></div>
-      <div class="kv"><b>Dirección</b><span>Trinidad, Santa Bárbara</span></div>
-
-      <div style="height:10px"></div>
-
-      <a class="btn primary" style="width:100%;" target="_blank"
-         href="https://wa.me/50493081535?text=Hola,%20me%20interesa%20la%20Finca%20Pitontes%20Bajos%20y%20quisiera%20más%20información.">
-        Consultar por WhatsApp
-      </a>
-
-      <a class="btn" style="width:100%; margin-top:10px" target="_blank"
-         href="https://wa.me/50497982896?text=Hola,%20me%20interesa%20la%20Finca%20Pitontes%20Bajos%20y%20quisiera%20más%20información.">
-        Asesor alterno
-      </a>
-
-      <div style="height:12px"></div>
-
-      <h3>Recomendación</h3>
-      <p class="subtitle" style="margin:0;">
-        Para coordinar visita, escribe por WhatsApp y te compartimos detalles adicionales (acceso, colindancias y más).
-      </p>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© 2026 Bienes Raíces Santa Bárbara HN</div>
+      <div class="muted">Contacto: +504 9308-1535 • info@bienesraicessbh.com</div>
     </div>
-  </div>
+  </footer>
 
-</div>
-
-<!-- BOTÓN FIJO MÓVIL -->
-<div class="sticky-cta">
-  <div class="inner">
-    <div class="label">
-      <b>Finca Pitontes Bajos — Disponible</b>
-      <span>WhatsApp principal: +504 9308-1535</span>
-    </div>
-    <a class="btn primary" target="_blank"
-       href="https://wa.me/50493081535?text=Hola,%20me%20interesa%20la%20Finca%20Pitontes%20Bajos%20y%20quisiera%20más%20información.">
-      📲 Consultar
-    </a>
-  </div>
-</div>
-
-<!-- MODAL fullscreen -->
-<div class="modal" id="modal">
-  <div class="modal-inner">
-    <div class="modal-top">
-      <div class="title2" id="modalTitle">Foto 1 / 9</div>
-      <button class="close" id="closeModal" aria-label="Cerrar">✕</button>
-    </div>
-
-    <div class="slider" style="aspect-ratio: 16 / 9;">
-      <button class="navbtn prev" id="prevBtn2" aria-label="Anterior">‹</button>
-      <img id="mainImage2" src="pitontes-1.png" alt="Foto ampliada" style="cursor:default;" />
-      <button class="navbtn next" id="nextBtn2" aria-label="Siguiente">›</button>
-      <div class="counter" id="counter2">1 / 9</div>
-    </div>
-
-    <div class="caption" style="margin-top:10px;">
-      <div id="captionText2">Vista panorámica / entorno natural</div>
-      <small>Usa ← → del teclado para cambiar</small>
-    </div>
-  </div>
-</div>
-
-<script>
-  // Fotos y títulos (puedes cambiarlos cuando quieras)
-  const photos = [
-    { src: "pitontes-1.png", title: "Vista panorámica / entorno natural" },
-    { src: "pitontes-2.png", title: "Área de vivienda / infraestructura" },
-    { src: "pitontes-3.png", title: "Entorno de montaña / paisaje" },
-    { src: "pitontes-4.png", title: "Accesos y caminos internos" },
-    { src: "pitontes-5.png", title: "Áreas productivas / vegetación" },
-    { src: "pitontes-6.png", title: "Vistas y zonas abiertas" },
-    { src: "pitontes-7.png", title: "Zona de apoyo / barracón" },
-    { src: "pitontes-8.png", title: "Paisaje / potencial de mirador" },
-    { src: "pitontes-9.png", title: "Entorno natural / proyección turística" }
-  ];
-
-  let i = 0;
-
-  const main = document.getElementById("mainImage");
-  const counter = document.getElementById("counter");
-  const thumbs = document.getElementById("thumbs");
-  const captionText = document.getElementById("captionText");
-
-  // Modal
-  const modal = document.getElementById("modal");
-  const main2 = document.getElementById("mainImage2");
-  const counter2 = document.getElementById("counter2");
-  const modalTitle = document.getElementById("modalTitle");
-  const captionText2 = document.getElementById("captionText2");
-
-  function renderThumbs(){
-    thumbs.innerHTML = "";
-    photos.forEach((p, idx) => {
-      const t = document.createElement("div");
-      t.className = "thumb" + (idx === i ? " active" : "");
-      t.innerHTML = `<img src="${p.src}" alt="Miniatura ${idx+1}">`;
-      t.onclick = () => { i = idx; sync(); };
-      thumbs.appendChild(t);
-    });
-  }
-
-  function sync(){
-    main.src = photos[i].src;
-    counter.textContent = (i+1) + " / " + photos.length;
-    captionText.textContent = photos[i].title;
-
-    main2.src = photos[i].src;
-    counter2.textContent = (i+1) + " / " + photos.length;
-    modalTitle.textContent = "Foto " + (i+1) + " / " + photos.length;
-    captionText2.textContent = photos[i].title;
-
-    [...thumbs.children].forEach((el, idx) => {
-      el.classList.toggle("active", idx === i);
-    });
-  }
-
-  function next(){ i = (i + 1) % photos.length; sync(); }
-  function prev(){ i = (i - 1 + photos.length) % photos.length; sync(); }
-
-  document.getElementById("nextBtn").onclick = next;
-  document.getElementById("prevBtn").onclick = prev;
-  document.getElementById("nextBtn2").onclick = next;
-  document.getElementById("prevBtn2").onclick = prev;
-
-  // click imagen -> abrir modal
-  main.addEventListener("click", () => {
-    modal.classList.add("open");
-    sync();
-  });
-
-  document.getElementById("closeModal").onclick = () => modal.classList.remove("open");
-  modal.addEventListener("click", (e) => { if(e.target === modal) modal.classList.remove("open"); });
-
-  // teclado en modal
-  window.addEventListener("keydown", (e) => {
-    if(modal.classList.contains("open")){
-      if(e.key === "Escape") modal.classList.remove("open");
-      if(e.key === "ArrowRight") next();
-      if(e.key === "ArrowLeft") prev();
-    }
-  });
-
-  // inicial
-  renderThumbs();
-  sync();
-</script>
-
+  <script>
+    (function() {
+      const main = document.getElementById("mainImage");
+      const thumbs = Array.from(document.querySelectorAll(".thumb"));
+      thumbs.forEach(btn => {
+        btn.addEventListener("click", () => {
+          thumbs.forEach(b => b.classList.remove("is-active"));
+          btn.classList.add("is-active");
+          const src = btn.getAttribute("data-src");
+          main.src = src;
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
