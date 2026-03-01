@@ -1,229 +1,279 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Bienes Raíces Santa Bárbara HN | Tu propiedad en manos seguras</title>
+  <title>Bienes Raíces Santa Bárbara HN | Venta y renta de propiedades</title>
+  <meta name="description" content="Compra, venta y renta de propiedades en Santa Bárbara, Honduras. Publicamos tu propiedad y conectamos con clientes reales. Atención rápida por WhatsApp." />
+  <meta name="theme-color" content="#1b2a57" />
 
-<style>
+  <!-- Open Graph (Facebook / WhatsApp) -->
+  <meta property="og:title" content="Bienes Raíces Santa Bárbara HN" />
+  <meta property="og:description" content="Compra, venta y renta de propiedades. Publica tu propiedad con nosotros y consigue clientes reales." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/og-cover.jpg" />
+  <meta property="og:locale" content="es_HN" />
 
-body{
-margin:0;
-font-family:Arial, Helvetica, sans-serif;
-background:#f4f6f9;
-color:#333;
-}
+  <link rel="icon" href="assets/favicon.png" />
+  <link rel="stylesheet" href="styles.css" />
 
-/* ===== HEADER ===== */
-
-header{
-background:#0b2c5f;
-color:white;
-padding:15px 30px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-header h1{
-margin:0;
-font-size:20px;
-}
-
-nav a{
-color:white;
-text-decoration:none;
-margin-left:20px;
-font-weight:bold;
-}
-
-nav a:hover{
-opacity:0.8;
-}
-
-/* ===== HERO ===== */
-
-.hero{
-background:linear-gradient(rgba(11,44,95,0.85),rgba(11,44,95,0.85)),
-url('https://images.unsplash.com/photo-1560518883-ce09059eeffa');
-background-size:cover;
-background-position:center;
-color:white;
-text-align:center;
-padding:90px 20px;
-}
-
-.hero h2{
-font-size:40px;
-margin-bottom:15px;
-}
-
-.hero p{
-font-size:18px;
-max-width:700px;
-margin:auto;
-}
-
-/* ===== BUTTON ===== */
-
-.btn{
-background:#d4af37;
-color:#0b2c5f;
-padding:18px 35px;
-text-decoration:none;
-font-weight:bold;
-border-radius:8px;
-display:inline-block;
-margin-top:25px;
-font-size:18px;
-box-shadow:0px 5px 15px rgba(0,0,0,0.2);
-}
-
-.btn:hover{
-background:#c19b2e;
-}
-
-/* ===== SERVICES ===== */
-
-.services{
-padding:60px 20px;
-text-align:center;
-background:white;
-}
-
-.services h2{
-color:#0b2c5f;
-margin-bottom:40px;
-}
-
-.cards{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:25px;
-}
-
-.card{
-background:#f4f6f9;
-padding:25px;
-border-radius:10px;
-width:280px;
-box-shadow:0px 4px 10px rgba(0,0,0,0.08);
-}
-
-.card h3{
-color:#0b2c5f;
-}
-
-/* ===== CTA FORM ===== */
-
-.cta{
-text-align:center;
-padding:70px 20px;
-background:#eef2f7;
-}
-
-.cta h2{
-color:#0b2c5f;
-font-size:32px;
-}
-
-/* ===== FOOTER ===== */
-
-footer{
-background:#0b2c5f;
-color:white;
-text-align:center;
-padding:30px 20px;
-font-size:14px;
-}
-
-</style>
+  <style>
+    /* ✅ Mini-estilos PRO (no chocan con tu styles.css) */
+    .badge-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);font-size:.95rem}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 16px;border-radius:12px;font-weight:700;text-decoration:none;cursor:pointer}
+    .btn-primary{background:#f6b100;color:#111}
+    .btn-outline{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35)}
+    .btn-dark{background:#101a3a;color:#fff}
+    .section-note{opacity:.85;font-size:.95rem}
+    .pro-card{border-radius:16px;padding:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
+    .split{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
+    @media (max-width: 900px){ .split{grid-template-columns:1fr} }
+    .floating-wa{position:fixed;right:16px;bottom:16px;z-index:999}
+    .floating-wa a{display:flex;align-items:center;gap:10px;background:#25D366;color:#111;font-weight:800;padding:12px 14px;border-radius:999px;text-decoration:none;box-shadow:0 12px 30px rgba(0,0,0,.28)}
+  </style>
 </head>
 
 <body>
+  <!-- ✅ CONFIG PRO (solo cambia aquí si cambia tu número o el link del Form) -->
+  <script>
+    window.BRSBHN = {
+      phone: "50493081535",
+      formUrl: "https://forms.gle/bd3GCebXNNkbc4ch6",
+      waDefaultMsg: "Hola, quiero publicar una propiedad con Bienes Raíces Santa Bárbara HN. ¿Me ayudan por favor?"
+    };
+  </script>
 
-<header>
-<h1>Bienes Raíces Santa Bárbara HN</h1>
+  <!-- Floating WhatsApp -->
+  <div class="floating-wa">
+    <a id="waFloating" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
+  </div>
 
-<nav>
-<a href="#">Inicio</a>
-<a href="#">Servicios</a>
-<a href="#">Publicar Propiedad</a>
-<a href="https://wa.me/50493081535" target="_blank">WhatsApp</a>
-</nav>
-</header>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#inicio">
+        <img src="assets/logo.png" alt="Bienes Raíces Santa Bárbara HN" class="logo" />
+        <div class="brand-text">
+          <strong>Bienes Raíces</strong>
+          <span>Santa Bárbara HN</span>
+        </div>
+      </a>
 
-<!-- HERO -->
+      <nav class="nav">
+        <a href="#servicios">Servicios</a>
+        <a href="#propiedades">Propiedades</a>
+        <a href="#publica">Publica tu propiedad</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
 
-<section class="hero">
+      <div class="top-actions">
+        <a id="waTop" class="btn btn-outline" href="#" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </header>
 
-<h2>Tu propiedad en buenas manos</h2>
+  <main id="inicio">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container split">
+        <div>
+          <h1>Compra, venta y renta de propiedades <br/>en Santa Bárbara, Honduras</h1>
+          <p class="lead">
+            Publicamos tu propiedad y conectamos con interesados reales.
+            Atención rápida y seguimiento profesional.
+          </p>
 
-<p>
-Compra, venta y renta de propiedades con asesoría profesional,
-seguridad legal y promoción digital estratégica.
-</p>
+          <div class="badge-row">
+            <span class="badge">✅ Sin pagos anticipados</span>
+            <span class="badge">✅ Honorarios cuando se rente</span>
+            <span class="badge">✅ Atención por WhatsApp</span>
+          </div>
 
-<a class="btn" href="https://forms.gle/PEGA_AQUI_TU_LINK_DEL_FORMULARIO" target="_blank">
-Publicar mi propiedad
-</a>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#propiedades">Ver propiedades</a>
+            <a class="btn btn-dark" id="btnPublicaHero" href="#" target="_blank" rel="noopener">Publicar mi propiedad</a>
+            <a class="btn btn-outline" id="waHero" href="#" target="_blank" rel="noopener">Hablar por WhatsApp</a>
+          </div>
 
-</section>
+          <p class="section-note" style="margin-top:12px;">
+            Tel/WhatsApp: <strong>+504 9308-1535</strong>
+          </p>
+        </div>
 
-<!-- SERVICIOS -->
+        <div class="pro-card">
+          <h3 style="margin-top:0;">Publica tu propiedad (Renta / Venta)</h3>
+          <p class="section-note">
+            Llena el formulario y en minutos te contactamos para coordinar la publicación.
+          </p>
 
-<section class="services">
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">
+            <a class="btn btn-primary" id="btnPublicaCard" href="#" target="_blank" rel="noopener">Abrir formulario</a>
+            <a class="btn btn-outline" id="waQuick" href="#" target="_blank" rel="noopener">Asesor por WhatsApp</a>
+          </div>
 
-<h2>Nuestros Servicios</h2>
+          <hr style="border:none;border-top:1px solid rgba(255,255,255,.15);margin:16px 0;" />
 
-<div class="cards">
+          <p class="section-note" style="margin:0;">
+            Nota: Google Forms <strong>no permite “Incorporar HTML”</strong> si el formulario
+            incluye <strong>carga de archivos</strong>. Por eso, aquí lo abrimos en una pestaña nueva (Opción 2).
+          </p>
+        </div>
+      </div>
+    </section>
 
-<div class="card">
-<h3>Compra y Venta</h3>
-<p>Gestionamos la venta de casas, terrenos, fincas y locales comerciales con promoción profesional.</p>
-</div>
+    <!-- SERVICIOS -->
+    <section id="servicios" class="section">
+      <div class="container">
+        <h2>Servicios</h2>
 
-<div class="card">
-<h3>Renta de Propiedades</h3>
-<p>Encontramos inquilinos ideales para casas, apartamentos y locales comerciales sin pagos anticipados.</p>
-</div>
+        <div class="cards">
+          <article class="card">
+            <h3>Compra y venta</h3>
+            <p>Te ayudamos a comprar o vender propiedades de todo tipo con acompañamiento y asesoría.</p>
+          </article>
 
-<div class="card">
-<h3>Asesoría Legal</h3>
-<p>Contratos y procesos respaldados jurídicamente para proteger propietarios e inversionistas.</p>
-</div>
+          <article class="card">
+            <h3>Renta de propiedades</h3>
+            <p>Promocionamos y gestionamos la renta de casas, apartamentos y locales comerciales.</p>
+          </article>
 
-</div>
+          <article class="card">
+            <h3>Atención y seguimiento</h3>
+            <p>Respondemos consultas, damos seguimiento a interesados y coordinamos visitas.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-</section>
+    <!-- PROPIEDADES -->
+    <section id="propiedades" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <h2>Propiedades</h2>
+          <div class="section-actions">
+            <a id="waProps" class="btn btn-outline" href="#" target="_blank" rel="noopener">📲 Preguntar por WhatsApp</a>
+          </div>
+        </div>
 
-<!-- FORMULARIO CTA -->
+        <!-- ✅ IMPORTANTE: este contenedor se mantiene para que tu JS cargue aquí tus propiedades -->
+        <div id="propertiesGrid" class="grid"></div>
 
-<section class="cta">
+        <p class="section-note" style="margin-top:12px;">
+          ¿Buscas algo específico? Escríbenos por WhatsApp y te enviamos opciones.
+        </p>
+      </div>
+    </section>
 
-<h2>Publica tu propiedad con nosotros</h2>
+    <!-- PUBLICA (SECCIÓN DEDICADA) -->
+    <section id="publica" class="section">
+      <div class="container split">
+        <div>
+          <h2>Publica tu propiedad con nosotros</h2>
+          <p class="lead">
+            Si quieres rentar o vender tu propiedad, llena el formulario y nuestro equipo te contacta para iniciar el proceso.
+          </p>
 
-<p>
-Sin pagos anticipados. Solo cobramos cuando tu propiedad se rente.
-</p>
+          <ul class="checklist">
+            <li>✅ Coordinación rápida</li>
+            <li>✅ Publicación en canales digitales</li>
+            <li>✅ Ficha del cliente automática (tu hoja CRM)</li>
+          </ul>
 
-<a class="btn" href="https://forms.gle/PEGA_AQUI_TU_LINK_DEL_FORMULARIO" target="_blank">
-Iniciar publicación ahora
-</a>
+          <div class="hero-actions">
+            <a class="btn btn-primary" id="btnPublicaSection" href="#" target="_blank" rel="noopener">Abrir formulario</a>
+            <a class="btn btn-outline" id="waPublica" href="#" target="_blank" rel="noopener">Resolver dudas por WhatsApp</a>
+          </div>
+        </div>
 
-</section>
+        <div class="pro-card">
+          <h3 style="margin-top:0;">¿Qué pasa después?</h3>
+          <p class="section-note">
+            Al enviar el formulario:
+          </p>
+          <ol class="section-note" style="line-height:1.6;">
+            <li>Se registra automáticamente en tu hoja “CRM CLIENTES”.</li>
+            <li>Tu equipo recibe los datos para darle seguimiento.</li>
+            <li>Coordinan visita / fotos / publicación (según aplique).</li>
+          </ol>
+        </div>
+      </div>
+    </section>
 
-<!-- FOOTER -->
+    <!-- CONTACTO -->
+    <section id="contacto" class="section section-alt">
+      <div class="container">
+        <h2>Contacto</h2>
+        <p class="lead">Escríbenos y te atendemos de inmediato.</p>
 
-<footer>
+        <div class="hero-actions">
+          <a id="waContact" class="btn btn-primary" href="#" target="_blank" rel="noopener">📲 WhatsApp +504 9308-1535</a>
+          <a class="btn btn-outline" href="mailto:bienesraices.sbhn@gmail.com">✉️ Correo</a>
+        </div>
 
-<p><strong>Bienes Raíces Santa Bárbara HN</strong></p>
-<p>📲 WhatsApp: +504 9308-1535</p>
-<p>Tu propiedad en buenas manos</p>
+        <!-- Mantengo tu formulario interno (si tu script.js lo usa para enviar a WhatsApp). -->
+        <form id="leadForm" class="lead-form" style="margin-top:18px;">
+          <div class="form-row">
+            <label>Nombre</label>
+            <input type="text" name="nombre" placeholder="Tu nombre" required />
+          </div>
+          <div class="form-row">
+            <label>WhatsApp</label>
+            <input type="tel" name="whatsapp" placeholder="Ej: 93081535" required />
+          </div>
+          <div class="form-row">
+            <label>Mensaje</label>
+            <textarea name="mensaje" rows="4" placeholder="Cuéntanos qué necesitas (renta/venta/compra)..." required></textarea>
+          </div>
+          <button class="btn btn-dark" type="submit">Enviar</button>
+          <p class="section-note" style="margin-top:10px;">
+            Al enviar, te contactaremos a la brevedad.
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
 
-</footer>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Bienes Raíces Santa Bárbara HN. Todos los derechos reservados.</p>
+    </div>
+  </footer>
 
+  <script>
+    // ✅ Config de links (evita el error del link placeholder)
+    (function () {
+      const cfg = window.BRSBHN || {};
+      const phone = cfg.phone || "50493081535";
+      const formUrl = cfg.formUrl || "https://forms.gle/bd3GCebXNNkbc4ch6";
+      const msg = encodeURIComponent(cfg.waDefaultMsg || "Hola, quiero información.");
+
+      const wa = `https://wa.me/${phone}?text=${msg}`;
+
+      const setHref = (id, href) => {
+        const el = document.getElementById(id);
+        if (el) el.href = href;
+      };
+
+      setHref("waTop", wa);
+      setHref("waHero", wa);
+      setHref("waProps", wa);
+      setHref("waContact", wa);
+      setHref("waQuick", wa);
+      setHref("waPublica", wa);
+      setHref("waFloating", wa);
+
+      setHref("btnPublicaHero", formUrl);
+      setHref("btnPublicaCard", formUrl);
+      setHref("btnPublicaSection", formUrl);
+
+      const y = document.getElementById("year");
+      if (y) y.textContent = new Date().getFullYear();
+    })();
+  </script>
+
+  <!-- ✅ Mantengo tu JS por si ahí cargas propiedades al #propertiesGrid -->
+  <script src="script.js"></script>
 </body>
 </html>
