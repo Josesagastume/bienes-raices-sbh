@@ -35,7 +35,18 @@
     .floating-wa a{display:flex;align-items:center;gap:10px;background:#25D366;color:#111;font-weight:800;padding:12px 14px;border-radius:999px;text-decoration:none;box-shadow:0 12px 30px rgba(0,0,0,.28)}
   </style>
 </head>
-
+.steps{
+  margin: 12px 0 0;
+  padding-left: 18px;
+  line-height: 1.5;
+}
+.steps li{
+  margin: 10px 0;
+}
+.steps strong{
+  display: inline-block;
+  margin-right: 6px;
+}
 <body>
   <!-- ✅ CONFIG PRO (solo cambia aquí si cambia tu número o el link del Form) -->
   <script>
@@ -187,19 +198,17 @@
           </div>
         </div>
 
-        <div class="pro-card">
-          <h3 style="margin-top:0;">¿Qué pasa después?</h3>
-          <p class="section-note">
-            Al enviar el formulario:
-          </p>
-          <ol class="section-note" style="line-height:1.6;">
-            <li>Se registra automáticamente en tu hoja “CRM CLIENTES”.</li>
-            <li>Tu equipo recibe los datos para darle seguimiento.</li>
-            <li>Coordinan visita / fotos / publicación (según aplique).</li>
-          </ol>
-        </div>
-      </div>
-    </section>
+       <div class="card glass">
+  <h3>¿Qué pasa después?</h3>
+  <p>Al enviar el formulario, este es el proceso:</p>
+
+  <ol class="steps">
+    <li><strong>Confirmación inmediata:</strong> recibimos tu solicitud y la asignamos a un asesor.</li>
+    <li><strong>Contacto por WhatsApp:</strong> te escribimos para confirmar datos y coordinar el siguiente paso.</li>
+    <li><strong>Visita / fotos (si aplica):</strong> programamos la toma de información y dejamos lista la publicación.</li>
+    <li><strong>Gestión de interesados:</strong> filtramos consultas y te presentamos opciones serias.</li>
+  </ol>
+</div>
 
     <!-- CONTACTO -->
     <section id="contacto" class="section section-alt">
