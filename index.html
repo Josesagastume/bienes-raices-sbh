@@ -4,51 +4,323 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Bienes Raíces Santa Bárbara HN | Venta y renta de propiedades</title>
+  <title>Bienes Raíces Santa Bárbara HN | Compra, venta y renta</title>
   <meta name="description" content="Compra, venta y renta de propiedades en Santa Bárbara, Honduras. Publicamos tu propiedad y conectamos con clientes reales. Atención rápida por WhatsApp." />
-  <meta name="theme-color" content="#1b2a57" />
+  <meta name="theme-color" content="#071128" />
 
   <!-- Open Graph (Facebook / WhatsApp) -->
   <meta property="og:title" content="Bienes Raíces Santa Bárbara HN" />
   <meta property="og:description" content="Compra, venta y renta de propiedades. Publica tu propiedad con nosotros y consigue clientes reales." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/og-cover.jpg" />
+  <meta property="og:image" content="logo.png" />
   <meta property="og:locale" content="es_HN" />
 
-  <link rel="icon" href="assets/favicon.png" />
+  <link rel="icon" href="logo.png" />
   <link rel="stylesheet" href="styles.css" />
 
   <style>
-    /* ✅ Mini-estilos PRO (no chocan con tu styles.css) */
-    .badge-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-    .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);font-size:.95rem}
-    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 16px;border-radius:12px;font-weight:700;text-decoration:none;cursor:pointer}
-    .btn-primary{background:#f6b100;color:#111}
-    .btn-outline{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35)}
-    .btn-dark{background:#101a3a;color:#fff}
-    .section-note{opacity:.85;font-size:.95rem}
-    .pro-card{border-radius:16px;padding:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
-    .split{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
-    @media (max-width: 900px){ .split{grid-template-columns:1fr} }
-    .floating-wa{position:fixed;right:16px;bottom:16px;z-index:999}
-    .floating-wa a{display:flex;align-items:center;gap:10px;background:#25D366;color:#111;font-weight:800;padding:12px 14px;border-radius:999px;text-decoration:none;box-shadow:0 12px 30px rgba(0,0,0,.28)}
+    :root{
+      --bg1:#071128;
+      --bg2:#0b1636;
+      --card: rgba(255,255,255,.06);
+      --stroke: rgba(255,255,255,.12);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.75);
+      --brand:#f6b100;
+      --wa:#25D366;
+      --shadow: 0 16px 40px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+
+    html{ scroll-behavior: smooth; }
+    body{
+      margin:0;
+      background:
+        radial-gradient(900px 600px at 10% 10%, rgba(37,211,102,.10), transparent 60%),
+        radial-gradient(900px 600px at 90% 20%, rgba(246,177,0,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg2), var(--bg1));
+      color: var(--text);
+      padding-bottom: 84px; /* espacio para barra móvil */
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    .container{ max-width: 1120px; margin: 0 auto; padding: 0 18px; }
+
+    /* ✅ Sticky topbar PRO */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background: rgba(7,17,40,.65);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding: 12px 0;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      color:#fff;
+      min-width: 220px;
+    }
+
+    /* ✅ LOGO PERFECTO EN MÓVIL */
+    .logo{
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+      border-radius: 14px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.14);
+      padding: 6px;
+      box-shadow: 0 10px 25px rgba(0,0,0,.25);
+      flex: 0 0 auto;
+    }
+    .brand-text strong{
+      font-size: 1.05rem;
+      letter-spacing:.2px;
+      display:block;
+      line-height: 1.1;
+    }
+    .brand-text span{
+      font-size: .95rem;
+      opacity: .85;
+      display:block;
+      line-height: 1.1;
+      margin-top: 2px;
+    }
+
+    .nav{ display:flex; gap:14px; align-items:center; }
+    .nav a{
+      color: rgba(255,255,255,.86);
+      text-decoration:none;
+      font-weight:700;
+      font-size:.95rem;
+      padding: 8px 10px;
+      border-radius: 10px;
+      transition: .2s ease;
+    }
+    .nav a:hover{ background: rgba(255,255,255,.08); color:#fff; }
+
+    /* ✅ Botones PRO */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-weight: 900;
+      text-decoration:none;
+      cursor:pointer;
+      border: 1px solid transparent;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
+      will-change: transform;
+      white-space: nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); box-shadow: var(--shadow); }
+    .btn-primary{ background: var(--brand); color:#111; }
+    .btn-outline{ background: transparent; color:#fff; border-color: rgba(255,255,255,.35); }
+    .btn-dark{ background: rgba(16,26,58,.85); color:#fff; border-color: rgba(255,255,255,.10); }
+
+    /* ✅ HERO PRO */
+    .hero{ padding: 48px 0 18px; }
+    .split{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:18px;
+      align-items: start;
+    }
+    @media (max-width: 980px){ .split{ grid-template-columns:1fr; } }
+
+    h1{
+      margin: 0 0 12px;
+      font-size: clamp(2.05rem, 3.2vw, 3.15rem);
+      line-height: 1.06;
+      letter-spacing: -0.6px;
+    }
+    .lead{
+      font-size: 1.08rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0 0 14px;
+    }
+
+    .badge-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 10px; }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      font-size: .95rem;
+      color: rgba(255,255,255,.90);
+    }
+
+    .hero-actions{ display:flex; flex-wrap:wrap; gap:12px; margin-top: 16px; }
+
+    .pro-card{
+      border-radius: var(--radius);
+      padding: 18px;
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      box-shadow: 0 18px 45px rgba(0,0,0,.25);
+    }
+
+    .section{ padding: 38px 0; }
+    .section-alt{
+      background: rgba(255,255,255,.03);
+      border-top:1px solid rgba(255,255,255,.06);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+
+    h2{ margin: 0 0 14px; font-size: 1.85rem; letter-spacing: -.3px; }
+    h3{ margin: 0 0 10px; font-size: 1.25rem; }
+
+    .section-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+    .section-note{ opacity:.86; font-size:.95rem; color: rgba(255,255,255,.78); }
+
+    /* ✅ Confianza / sellos */
+    .trust{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+      margin-top: 14px;
+    }
+    @media (max-width: 980px){ .trust{ grid-template-columns:1fr; } }
+    .trust .card p{ margin:0; }
+
+    /* ✅ Cards y grids */
+    .cards{ display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; }
+    @media (max-width: 980px){ .cards{ grid-template-columns:1fr; } }
+
+    .grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; }
+    @media (max-width: 980px){ .grid{ grid-template-columns:1fr; } }
+
+    .checklist{ margin: 12px 0 0; padding-left: 18px; line-height: 1.6; color: rgba(255,255,255,.88); }
+    .checklist li{ margin: 8px 0; }
+
+    .steps{
+      margin: 12px 0 0;
+      padding-left: 18px;
+      line-height: 1.55;
+      color: rgba(255,255,255,.85);
+    }
+    .steps li{ margin: 10px 0; }
+    .steps strong{ color:#fff; }
+
+    /* ✅ Form */
+    .lead-form{
+      margin-top: 18px;
+      border-radius: var(--radius);
+      padding: 16px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.10);
+    }
+    .form-row{ display:flex; flex-direction:column; gap:8px; margin-bottom:12px; }
+    .form-row label{ font-weight:800; font-size:.95rem; opacity:.9; }
+    .form-row input, .form-row textarea{
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      color:#fff;
+      padding: 12px 12px;
+      outline: none;
+    }
+
+    /* ✅ WhatsApp flotante DISCRETO */
+    .floating-wa{ position: fixed; right: 16px; bottom: 92px; z-index: 999; }
+    .floating-wa a{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      background: rgba(37,211,102,.92);
+      color:#0b1a12;
+      font-weight: 900;
+      padding: 11px 13px;
+      border-radius: 999px;
+      text-decoration:none;
+      box-shadow: 0 14px 35px rgba(0,0,0,.28);
+      border: 1px solid rgba(0,0,0,.12);
+    }
+
+    /* ✅ Barra inferior móvil con CTA */
+    .mobile-bar{
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 1100;
+      background: rgba(7,17,40,.75);
+      border-top: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 10px 12px;
+      display: none;
+    }
+    .mobile-bar .inner{
+      max-width: 1120px;
+      margin: 0 auto;
+      display:flex;
+      gap:10px;
+    }
+    .mobile-bar .btn{
+      flex: 1;
+      padding: 13px 12px;
+      border-radius: 14px;
+      font-weight: 900;
+    }
+    .btn-wa{
+      background: rgba(37,211,102,.95);
+      color:#0b1a12;
+      border-color: rgba(0,0,0,.10);
+    }
+
+    /* ✅ Responsive */
+    @media (max-width: 860px){
+      .nav{ display:none; }
+      .brand{ min-width: auto; }
+      .logo{ width: 50px; height: 50px; }
+      .topbar-inner{ padding: 10px 0; }
+      .mobile-bar{ display:block; }
+    }
+
+    /* ✅ Animación suave */
+    .fade-in{ animation: fadeInUp .55s ease both; }
+    @keyframes fadeInUp{
+      from{ opacity: 0; transform: translateY(10px); }
+      to{ opacity: 1; transform: translateY(0); }
+    }
+
+    /* ✅ Detalles finos */
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.85);
+      font-weight:800;
+      font-size:.92rem;
+    }
+
+    .footer{ padding: 22px 0; opacity: .85; }
+    .footer-inner{ display:flex; justify-content:center; text-align:center; }
   </style>
 </head>
-.steps{
-  margin: 12px 0 0;
-  padding-left: 18px;
-  line-height: 1.5;
-}
-.steps li{
-  margin: 10px 0;
-}
-.steps strong{
-  display: inline-block;
-  margin-right: 6px;
-}
+
 <body>
-  <!-- ✅ CONFIG PRO (solo cambia aquí si cambia tu número o el link del Form) -->
+  <!-- ✅ CONFIG PRO (solo cambia aquí si cambia número o link del Form) -->
   <script>
     window.BRSBHN = {
       phone: "50493081535",
@@ -57,15 +329,23 @@
     };
   </script>
 
-  <!-- Floating WhatsApp -->
+  <!-- WhatsApp flotante -->
   <div class="floating-wa">
     <a id="waFloating" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
   </div>
 
+  <!-- Barra móvil (CTA) -->
+  <div class="mobile-bar">
+    <div class="inner">
+      <a id="btnPublicaMobile" class="btn btn-primary" href="#" target="_blank" rel="noopener">📌 Publicar</a>
+      <a id="waMobile" class="btn btn-wa" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
+    </div>
+  </div>
+
   <header class="topbar">
     <div class="container topbar-inner">
-      <a class="brand" href="#inicio">
-        <img src="assets/logo.png" alt="Bienes Raíces Santa Bárbara HN" class="logo" />
+      <a class="brand" href="#inicio" aria-label="Ir al inicio">
+        <img src="logo.png" alt="Bienes Raíces Santa Bárbara HN" class="logo" />
         <div class="brand-text">
           <strong>Bienes Raíces</strong>
           <span>Santa Bárbara HN</span>
@@ -74,8 +354,9 @@
 
       <nav class="nav">
         <a href="#servicios">Servicios</a>
+        <a href="#destacadas">Destacadas</a>
         <a href="#propiedades">Propiedades</a>
-        <a href="#publica">Publica tu propiedad</a>
+        <a href="#publica">Publica</a>
         <a href="#contacto">Contacto</a>
       </nav>
 
@@ -89,17 +370,19 @@
     <!-- HERO -->
     <section class="hero">
       <div class="container split">
-        <div>
-          <h1>Compra, venta y renta de propiedades <br/>en Santa Bárbara, Honduras</h1>
+        <div class="fade-in">
+          <span class="pill">🏡 Atención rápida • Seguimiento profesional</span>
+          <h1 style="margin-top:10px;">Compra, venta y renta de propiedades <br/>en Santa Bárbara, Honduras</h1>
+
           <p class="lead">
             Publicamos tu propiedad y conectamos con interesados reales.
-            Atención rápida y seguimiento profesional.
+            Respuesta rápida por WhatsApp y proceso claro.
           </p>
 
           <div class="badge-row">
             <span class="badge">✅ Sin pagos anticipados</span>
-            <span class="badge">✅ Honorarios cuando se rente</span>
-            <span class="badge">✅ Atención por WhatsApp</span>
+            <span class="badge">✅ Honorarios al rentarse</span>
+            <span class="badge">✅ Gestión de interesados</span>
           </div>
 
           <div class="hero-actions">
@@ -111,12 +394,28 @@
           <p class="section-note" style="margin-top:12px;">
             Tel/WhatsApp: <strong>+504 9308-1535</strong>
           </p>
+
+          <!-- Confianza -->
+          <div class="trust">
+            <article class="card">
+              <h3>Proceso claro</h3>
+              <p class="section-note">Te explicamos pasos, tiempos y qué información necesitamos desde el inicio.</p>
+            </article>
+            <article class="card">
+              <h3>Publicación profesional</h3>
+              <p class="section-note">Presentación cuidada: fotos, descripción y enfoque a interesados reales.</p>
+            </article>
+            <article class="card">
+              <h3>Seguimiento</h3>
+              <p class="section-note">Damos seguimiento a consultas y coordinamos visitas según aplique.</p>
+            </article>
+          </div>
         </div>
 
-        <div class="pro-card">
+        <div class="pro-card fade-in">
           <h3 style="margin-top:0;">Publica tu propiedad (Renta / Venta)</h3>
           <p class="section-note">
-            Llena el formulario y en minutos te contactamos para coordinar la publicación.
+            Llena el formulario y te contactamos para coordinar la publicación.
           </p>
 
           <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">
@@ -124,10 +423,11 @@
             <a class="btn btn-outline" id="waQuick" href="#" target="_blank" rel="noopener">Asesor por WhatsApp</a>
           </div>
 
-          <hr style="border:none;border-top:1px solid rgba(255,255,255,.15);margin:16px 0;" />
+          <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:16px 0;" />
 
           <p class="section-note" style="margin:0;">
-        </p>
+            Tu solicitud se registra en tu hoja “CRM CLIENTES” para seguimiento.
+          </p>
         </div>
       </div>
     </section>
@@ -136,28 +436,47 @@
     <section id="servicios" class="section">
       <div class="container">
         <h2>Servicios</h2>
-
         <div class="cards">
           <article class="card">
             <h3>Compra y venta</h3>
-            <p>Te ayudamos a comprar o vender propiedades de todo tipo con acompañamiento y asesoría.</p>
+            <p class="section-note">Te ayudamos a comprar o vender propiedades con asesoría y acompañamiento.</p>
           </article>
-
           <article class="card">
             <h3>Renta de propiedades</h3>
-            <p>Promocionamos y gestionamos la renta de casas, apartamentos y locales comerciales.</p>
+            <p class="section-note">Promocionamos y gestionamos la renta de casas, apartamentos y locales.</p>
           </article>
-
           <article class="card">
-            <h3>Atención y seguimiento</h3>
-            <p>Respondemos consultas, damos seguimiento a interesados y coordinamos visitas.</p>
+            <h3>Atención y filtro</h3>
+            <p class="section-note">Respondemos consultas, filtramos interesados y coordinamos visitas.</p>
           </article>
         </div>
       </div>
     </section>
 
+    <!-- DESTACADAS (auto) -->
+    <section id="destacadas" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <h2>Propiedades destacadas</h2>
+          <div class="section-actions">
+            <a id="waFeatured" class="btn btn-outline" href="#" target="_blank" rel="noopener">📲 Pedir opciones por WhatsApp</a>
+          </div>
+        </div>
+
+        <p class="section-note" style="margin-top:6px;">
+          Selección rápida de propiedades. Si buscas algo específico, escríbenos por WhatsApp.
+        </p>
+
+        <div id="featuredGrid" class="grid" style="margin-top:14px;"></div>
+
+        <p id="featuredEmpty" class="section-note" style="margin-top:14px;display:none;">
+          Aún no hay destacadas cargadas. En breve aparecerán aquí.
+        </p>
+      </div>
+    </section>
+
     <!-- PROPIEDADES -->
-    <section id="propiedades" class="section section-alt">
+    <section id="propiedades" class="section">
       <div class="container">
         <div class="section-head">
           <h2>Propiedades</h2>
@@ -166,8 +485,8 @@
           </div>
         </div>
 
-        <!-- ✅ IMPORTANTE: este contenedor se mantiene para que tu JS cargue aquí tus propiedades -->
-        <div id="propertiesGrid" class="grid"></div>
+        <!-- ✅ este contenedor lo llena tu script.js -->
+        <div id="propertiesGrid" class="grid" style="margin-top:14px;"></div>
 
         <p class="section-note" style="margin-top:12px;">
           ¿Buscas algo específico? Escríbenos por WhatsApp y te enviamos opciones.
@@ -175,8 +494,8 @@
       </div>
     </section>
 
-    <!-- PUBLICA (SECCIÓN DEDICADA) -->
-    <section id="publica" class="section">
+    <!-- PUBLICA -->
+    <section id="publica" class="section section-alt">
       <div class="container split">
         <div>
           <h2>Publica tu propiedad con nosotros</h2>
@@ -187,7 +506,7 @@
           <ul class="checklist">
             <li>✅ Coordinación rápida</li>
             <li>✅ Publicación en canales digitales</li>
-            <li>✅ Ficha del cliente automática (tu hoja CRM)</li>
+            <li>✅ Registro automático (tu hoja CRM)</li>
           </ul>
 
           <div class="hero-actions">
@@ -196,20 +515,22 @@
           </div>
         </div>
 
-       <div class="card glass">
-  <h3>¿Qué pasa después?</h3>
-  <p>Al enviar el formulario, este es el proceso:</p>
+        <div class="pro-card">
+          <h3>¿Qué pasa después?</h3>
+          <p class="section-note">Al enviar el formulario, este es el proceso:</p>
 
-  <ol class="steps">
-    <li><strong>Confirmación inmediata:</strong> recibimos tu solicitud y la asignamos a un asesor.</li>
-    <li><strong>Contacto por WhatsApp:</strong> te escribimos para confirmar datos y coordinar el siguiente paso.</li>
-    <li><strong>Visita / fotos (si aplica):</strong> programamos la toma de información y dejamos lista la publicación.</li>
-    <li><strong>Gestión de interesados:</strong> filtramos consultas y te presentamos opciones serias.</li>
-  </ol>
-</div>
+          <ol class="steps">
+            <li><strong>Confirmación inmediata:</strong> recibimos tu solicitud y la asignamos a un asesor.</li>
+            <li><strong>Contacto por WhatsApp:</strong> confirmamos datos y coordinamos el siguiente paso.</li>
+            <li><strong>Visita / fotos (si aplica):</strong> programamos la toma de información y dejamos lista la publicación.</li>
+            <li><strong>Gestión de interesados:</strong> filtramos consultas y te presentamos opciones serias.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
 
     <!-- CONTACTO -->
-    <section id="contacto" class="section section-alt">
+    <section id="contacto" class="section">
       <div class="container">
         <h2>Contacto</h2>
         <p class="lead">Escríbenos y te atendemos de inmediato.</p>
@@ -219,8 +540,7 @@
           <a class="btn btn-outline" href="mailto:bienesraices.sbhn@gmail.com">✉️ Correo</a>
         </div>
 
-        <!-- Mantengo tu formulario interno (si tu script.js lo usa para enviar a WhatsApp). -->
-        <form id="leadForm" class="lead-form" style="margin-top:18px;">
+        <form id="leadForm" class="lead-form">
           <div class="form-row">
             <label>Nombre</label>
             <input type="text" name="nombre" placeholder="Tu nombre" required />
@@ -249,7 +569,7 @@
   </footer>
 
   <script>
-    // ✅ Config de links (evita el error del link placeholder)
+    // ✅ Links + WhatsApp
     (function () {
       const cfg = window.BRSBHN || {};
       const phone = cfg.phone || "50493081535";
@@ -263,24 +583,55 @@
         if (el) el.href = href;
       };
 
-      setHref("waTop", wa);
-      setHref("waHero", wa);
-      setHref("waProps", wa);
-      setHref("waContact", wa);
-      setHref("waQuick", wa);
-      setHref("waPublica", wa);
-      setHref("waFloating", wa);
-
-      setHref("btnPublicaHero", formUrl);
-      setHref("btnPublicaCard", formUrl);
-      setHref("btnPublicaSection", formUrl);
+      ["waTop","waHero","waProps","waContact","waQuick","waPublica","waFloating","waMobile","waFeatured"].forEach(id => setHref(id, wa));
+      ["btnPublicaHero","btnPublicaCard","btnPublicaSection","btnPublicaMobile"].forEach(id => setHref(id, formUrl));
 
       const y = document.getElementById("year");
       if (y) y.textContent = new Date().getFullYear();
     })();
+
+    // ✅ Destacadas automáticas: copia primeras 3 tarjetas que tu script.js cargue en #propertiesGrid
+    (function () {
+      const featuredGrid = document.getElementById("featuredGrid");
+      const propsGrid = document.getElementById("propertiesGrid");
+      const empty = document.getElementById("featuredEmpty");
+
+      const pickFeatured = () => {
+        if (!featuredGrid || !propsGrid) return;
+
+        // si ya llenó, no repetir
+        if (featuredGrid.children.length > 0) return;
+
+        const cards = Array.from(propsGrid.children).slice(0, 3);
+        if (cards.length === 0) {
+          if (empty) empty.style.display = "block";
+          return;
+        }
+
+        if (empty) empty.style.display = "none";
+
+        cards.forEach((node) => {
+          // clona para no mover las originales
+          const clone = node.cloneNode(true);
+          featuredGrid.appendChild(clone);
+        });
+      };
+
+      // intenta varias veces porque script.js puede tardar en cargar
+      let tries = 0;
+      const timer = setInterval(() => {
+        tries++;
+        pickFeatured();
+        if (featuredGrid && featuredGrid.children.length > 0) clearInterval(timer);
+        if (tries >= 20) clearInterval(timer); // ~10s
+      }, 500);
+
+      // también intenta cuando cargue la página
+      window.addEventListener("load", pickFeatured);
+    })();
   </script>
 
-  <!-- ✅ Mantengo tu JS por si ahí cargas propiedades al #propertiesGrid -->
+  <!-- ✅ Mantengo tu JS para cargar propiedades -->
   <script src="script.js"></script>
 </body>
 </html>
