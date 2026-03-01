@@ -1,180 +1,229 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bienes Raíces Santa Bárbara HN | Tu patrimonio, en manos seguras.</title>
-  <meta name="description" content="Compra, venta y renta de propiedades en Honduras. Atención profesional y acompañamiento en todo el proceso." />
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bienes Raíces Santa Bárbara HN | Tu propiedad en manos seguras</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background:#f4f6f9;
+color:#333;
+}
+
+/* ===== HEADER ===== */
+
+header{
+background:#0b2c5f;
+color:white;
+padding:15px 30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+header h1{
+margin:0;
+font-size:20px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+font-weight:bold;
+}
+
+nav a:hover{
+opacity:0.8;
+}
+
+/* ===== HERO ===== */
+
+.hero{
+background:linear-gradient(rgba(11,44,95,0.85),rgba(11,44,95,0.85)),
+url('https://images.unsplash.com/photo-1560518883-ce09059eeffa');
+background-size:cover;
+background-position:center;
+color:white;
+text-align:center;
+padding:90px 20px;
+}
+
+.hero h2{
+font-size:40px;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:18px;
+max-width:700px;
+margin:auto;
+}
+
+/* ===== BUTTON ===== */
+
+.btn{
+background:#d4af37;
+color:#0b2c5f;
+padding:18px 35px;
+text-decoration:none;
+font-weight:bold;
+border-radius:8px;
+display:inline-block;
+margin-top:25px;
+font-size:18px;
+box-shadow:0px 5px 15px rgba(0,0,0,0.2);
+}
+
+.btn:hover{
+background:#c19b2e;
+}
+
+/* ===== SERVICES ===== */
+
+.services{
+padding:60px 20px;
+text-align:center;
+background:white;
+}
+
+.services h2{
+color:#0b2c5f;
+margin-bottom:40px;
+}
+
+.cards{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:25px;
+}
+
+.card{
+background:#f4f6f9;
+padding:25px;
+border-radius:10px;
+width:280px;
+box-shadow:0px 4px 10px rgba(0,0,0,0.08);
+}
+
+.card h3{
+color:#0b2c5f;
+}
+
+/* ===== CTA FORM ===== */
+
+.cta{
+text-align:center;
+padding:70px 20px;
+background:#eef2f7;
+}
+
+.cta h2{
+color:#0b2c5f;
+font-size:32px;
+}
+
+/* ===== FOOTER ===== */
+
+footer{
+background:#0b2c5f;
+color:white;
+text-align:center;
+padding:30px 20px;
+font-size:14px;
+}
+
+</style>
 </head>
 
 <body>
-  <header class="header">
-    <div class="container header__inner">
-      <a class="brand" href="index.html" aria-label="Inicio">
-        <div class="brand__logo">BR</div>
-        <div class="brand__text">
-          <div class="brand__name">Bienes Raíces</div>
-          <div class="brand__sub">Santa Bárbara HN</div>
-        </div>
-      </a>
 
-      <nav class="nav">
-        <a href="#propiedades">Propiedades</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#nosotros">Nosotros</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
+<header>
+<h1>Bienes Raíces Santa Bárbara HN</h1>
 
-      <a class="btn btn--ghost" id="btnWhatsappTop" target="_blank" rel="noopener">WhatsApp</a>
-    </div>
-  </header>
+<nav>
+<a href="#">Inicio</a>
+<a href="#">Servicios</a>
+<a href="#">Publicar Propiedad</a>
+<a href="https://wa.me/50493081535" target="_blank">WhatsApp</a>
+</nav>
+</header>
 
-  <main>
-    <section class="hero">
-      <div class="container hero__grid">
-        <div class="hero__copy">
-          <h1>Compra, venta y renta de propiedades en Honduras</h1>
-          <p>
-            Operamos desde Santa Bárbara con cobertura nacional.
-            Te acompañamos con seguridad, respaldo y transparencia para proteger tu inversión.
-          </p>
+<!-- HERO -->
 
-          <div class="hero__cta">
-            <a class="btn" id="btnWhatsappHero" target="_blank" rel="noopener">Escribir por WhatsApp</a>
-            <a class="btn btn--ghost" href="#propiedades">Ver propiedades</a>
-            <a class="btn btn--ghost" href="#contacto">Contacto</a>
-          </div>
+<section class="hero">
 
-          <div class="trust">
-            <div class="trust__item">
-              <div class="trust__title">Cobertura nacional</div>
-              <div class="trust__desc">Atendemos en todo Honduras.</div>
-            </div>
-            <div class="trust__item">
-              <div class="trust__title">Transparencia</div>
-              <div class="trust__desc">Información clara desde el inicio.</div>
-            </div>
-            <div class="trust__item">
-              <div class="trust__title">Seguridad</div>
-              <div class="trust__desc">Acompañamiento profesional.</div>
-            </div>
-          </div>
-        </div>
+<h2>Tu propiedad en buenas manos</h2>
 
-        <div class="card card--form" id="contacto">
-          <h2>¿Qué estás buscando?</h2>
-          <p class="muted">Envíanos tu consulta y te respondemos por WhatsApp.</p>
+<p>
+Compra, venta y renta de propiedades con asesoría profesional,
+seguridad legal y promoción digital estratégica.
+</p>
 
-          <form id="leadForm">
-            <label>
-              Nombre
-              <input required type="text" name="name" placeholder="Tu nombre" />
-            </label>
+<a class="btn" href="https://forms.gle/PEGA_AQUI_TU_LINK_DEL_FORMULARIO" target="_blank">
+Publicar mi propiedad
+</a>
 
-            <label>
-              Teléfono / WhatsApp
-              <input required type="text" name="phone" placeholder="+504 ..." />
-            </label>
+</section>
 
-            <label>
-              Interés
-              <select name="interest">
-                <option value="Compra">Compra</option>
-                <option value="Venta">Venta</option>
-                <option value="Renta">Renta</option>
-                <option value="Inversión">Inversión</option>
-              </select>
-            </label>
+<!-- SERVICIOS -->
 
-            <label>
-              Zona (opcional)
-              <input type="text" name="zone" placeholder="Ej. Santa Bárbara, SPS, Tegucigalpa..." />
-            </label>
+<section class="services">
 
-            <label>
-              Mensaje
-              <textarea name="message" rows="4" placeholder="Cuéntanos qué buscas..."></textarea>
-            </label>
+<h2>Nuestros Servicios</h2>
 
-            <button class="btn btn--full" type="submit">Enviar por WhatsApp</button>
-            <small class="muted">Al enviar, se abrirá WhatsApp con el mensaje listo.</small>
-          </form>
-        </div>
-      </div>
-    </section>
+<div class="cards">
 
-    <section class="section" id="propiedades">
-      <div class="container">
-        <div class="section__head">
-          <h2>Propiedades destacadas</h2>
-          <p class="muted">Solo propiedades reales (sin ejemplos). Pregunta por disponibilidad.</p>
-        </div>
+<div class="card">
+<h3>Compra y Venta</h3>
+<p>Gestionamos la venta de casas, terrenos, fincas y locales comerciales con promoción profesional.</p>
+</div>
 
-        <div class="filters">
-          <button class="chip is-active" data-filter="all">Todas</button>
-          <button class="chip" data-filter="finca">Fincas</button>
-        </div>
+<div class="card">
+<h3>Renta de Propiedades</h3>
+<p>Encontramos inquilinos ideales para casas, apartamentos y locales comerciales sin pagos anticipados.</p>
+</div>
 
-        <div class="grid" id="propertiesGrid"></div>
-      </div>
-    </section>
+<div class="card">
+<h3>Asesoría Legal</h3>
+<p>Contratos y procesos respaldados jurídicamente para proteger propietarios e inversionistas.</p>
+</div>
 
-    <section class="section" id="servicios">
-      <div class="container">
-        <div class="section__head">
-          <h2>Servicios</h2>
-          <p class="muted">Atención profesional para compra, venta y renta en todo Honduras.</p>
-        </div>
+</div>
 
-        <div class="grid grid--3">
-          <div class="card">
-            <h3>Compra de propiedades</h3>
-            <p class="muted">Te guiamos para invertir con claridad y confianza.</p>
-          </div>
-          <div class="card">
-            <h3>Venta de propiedades</h3>
-            <p class="muted">Promocionamos tu inmueble y filtramos compradores.</p>
-          </div>
-          <div class="card">
-            <h3>Renta de propiedades</h3>
-            <p class="muted">Proceso ordenado y seguro para propietarios e interesados.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+</section>
 
-    <section class="section" id="nosotros">
-      <div class="container">
-        <div class="section__head">
-          <h2>Nosotros</h2>
-          <p class="muted">Bienes Raíces Santa Bárbara HN: tu patrimonio, en manos seguras.</p>
-        </div>
+<!-- FORMULARIO CTA -->
 
-        <div class="card">
-          <p>
-            Nos especializamos en conectar oportunidades con clientes reales, con un enfoque profesional:
-            información clara, seguimiento rápido y acompañamiento durante todo el proceso.
-          </p>
-        </div>
-      </div>
-    </section>
+<section class="cta">
 
-    <footer class="footer">
-      <div class="container footer__inner">
-        <div>
-          <strong>Bienes Raíces Santa Bárbara HN</strong><br />
-          <span class="muted">Trinidad, Santa Bárbara</span>
-        </div>
-        <div class="footer__links">
-          <a href="#propiedades">Propiedades</a>
-          <a href="#servicios">Servicios</a>
-          <a href="#contacto">Contacto</a>
-        </div>
-      </div>
-    </footer>
-  </main>
+<h2>Publica tu propiedad con nosotros</h2>
 
-  <script src="script.js"></script>
+<p>
+Sin pagos anticipados. Solo cobramos cuando tu propiedad se rente.
+</p>
+
+<a class="btn" href="https://forms.gle/PEGA_AQUI_TU_LINK_DEL_FORMULARIO" target="_blank">
+Iniciar publicación ahora
+</a>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<p><strong>Bienes Raíces Santa Bárbara HN</strong></p>
+<p>📲 WhatsApp: +504 9308-1535</p>
+<p>Tu propiedad en buenas manos</p>
+
+</footer>
+
 </body>
 </html>
